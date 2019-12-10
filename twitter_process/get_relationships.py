@@ -113,8 +113,8 @@ def test():
 
 if __name__ == '__main__':
     twitter_names,twitter_countries = get_twitter_names()
-    get_nodes(twitter_names,twitter_countries)
+    # get_nodes(twitter_names,twitter_countries)
     # twitter_names = ['@ashrafghani', '@SalahRabbani', '@bnishaniZyrtare', '@ediramaal', '@ditmirbushati', '@fhollande', '@antonimartipeti', '@mauriciomacri', '@ZMnatsakanyan', '@TurnbullMalcolm',
     #                  '@HonJulieBishop']
-    # get_relationships(twitter_names)
+    get_relationships(twitter_names)
     # test()
