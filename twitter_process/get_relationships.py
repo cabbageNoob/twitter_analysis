@@ -84,7 +84,7 @@ def get_relationships(names):
                     source_screen_name=one_name, target_screen_name=names[two_index])
             except twitter.error.TwitterError as e:
                 print(e, one_index)
-                time.sleep(60 * 2)
+                time.sleep(60 * 3)
                 continue
             except StopIteration:
                 break
