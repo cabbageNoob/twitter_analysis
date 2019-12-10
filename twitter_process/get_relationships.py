@@ -13,11 +13,11 @@ import numpy as np
 
 pwd_path = os.path.abspath(os.path.dirname(__file__))
 
-TWITTER_NAMES_FILE           = os.path.join(pwd_path, './clean_Twitter.csv')
-TWITTER_NODES_FILE           = os.path.join(pwd_path, './result/twitter_nodes.json')
-TWITTER_EDGES_FILE           = os.path.join(pwd_path, './result/twitter_edges.json')
+TWITTER_NAMES_FILE = os.path.join(pwd_path, './clean_Twitter.csv')
+TWITTER_NODES_FILE = os.path.join(pwd_path, './result/twitter_nodes.json')
+TWITTER_EDGES_FILE = os.path.join(pwd_path, './result/twitter_edges.json')
 
-twitter_names=list()
+twitter_names = list()
 
 proxy = {"http": "http://127.0.0.1:1080", "https": "https://127.0.0.1:1080"}
 
@@ -39,54 +39,69 @@ def readjson(filename):
     with open(filename, 'rb') as outfile:
         return json.load(outfile)
 
+
 '''get the twitter names'''
+
+
 def get_twitter_names():
     # pandas读入
     data = pd.read_csv(TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
     return names
 
+
 '''get the node informations'''
+
+
 def get_nodes(names):
-    twitter_nodes=list()
+    twitter_nodes = list()
     for name in names:
         node = dict()
         try:
             status = api.GetUser(screen_name=name, return_json=True)
         except Exception as identifier:
-            print(identifier,name)
+            print(identifier, name)
             continue
         node.setdefault('id', status.get('id'))
         node.setdefault('label', status.get('name'))
+        node.setdefault('shape', 'circularImage')
         node.setdefault('image', status.get('profile_image_url'))
         twitter_nodes.append(node)
     writejson2file(twitter_nodes, TWITTER_NODES_FILE)
 
+
 '''get the norelationship informations'''
+
+
 def get_relationships(names):
-    twitter_edges=list()
-    for one_index,one_name in enumerate(names):
-        for two_index in range(one_index+1,len(names)):
+    twitter_edges = list()
+    for one_index, one_name in enumerate(names):
+        for two_index in range(one_index+1, len(names)):
             try:
-                 relationship = api.ShowFriendship(
-                     source_screen_name=one_name, target_screen_name=names[two_index])
+                relationship = api.ShowFriendship(
+                    source_screen_name=one_name, target_screen_name=names[two_index])
             except twitter.error.TwitterError as e:
-                print(e,one_index)
+                print(e, one_index)
                 time.sleep(60 * 2)
                 continue
             except StopIteration:
                 break
             if (relationship['relationship']['source']['following']):
                 edge = dict()
-                edge.setdefault('from', relationship['relationship']['source']['id'])
-                edge.setdefault('to', relationship['relationship']['target']['id'])
+                edge.setdefault(
+                    'from', relationship['relationship']['source']['id'])
+                edge.setdefault(
+                    'to', relationship['relationship']['target']['id'])
                 twitter_edges.append(edge)
             if (relationship['relationship']['source']['followed_by']):
                 edge = dict()
-                edge.setdefault('from', relationship['relationship']['target']['id'])
-                edge.setdefault('to', relationship['relationship']['source']['id'])
+                edge.setdefault(
+                    'from', relationship['relationship']['target']['id'])
+                edge.setdefault(
+                    'to', relationship['relationship']['source']['id'])
                 twitter_edges.append(edge)
     writejson2file(twitter_edges, TWITTER_EDGES_FILE)
+
 
 def test():
     blocks = api.ShowFriendship(source_screen_name='@realDonaldTrump',
