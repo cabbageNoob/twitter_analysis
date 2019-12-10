@@ -19,9 +19,9 @@ TWITTER_EDGES_FILE = os.path.join(pwd_path, './result/twitter_edges.json')
 
 proxy = {"http": "http://127.0.0.1:1080", "https": "https://127.0.0.1:1080"}
 
-ACCESS_TOKEN = '1111937967235522560-N1Mzfz3TaWu9sw85jtITG6XvcXn8Cf'
-ACCESS_SECRET = 'IKBfbt4jWJtX4DTByH1ITW7i74qpRS0Nuh8LaGeGogZSa'
-CONSUMER_KEY = '5BZN0EFUNqMHQpfnj82MXMmej'
+ACCESS_TOKEN    = '1111937967235522560-N1Mzfz3TaWu9sw85jtITG6XvcXn8Cf'
+ACCESS_SECRET   = 'IKBfbt4jWJtX4DTByH1ITW7i74qpRS0Nuh8LaGeGogZSa'
+CONSUMER_KEY    = '5BZN0EFUNqMHQpfnj82MXMmej'
 CONSUMER_SECRET = '0BEJ4ZtvVfneDslkztTgNTGTvBD53l2G7zgnh4Ok5J3RHGEdVk'
 api = twitter.Api(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SECRET,
                   access_token_key=ACCESS_TOKEN, access_token_secret=ACCESS_SECRET, proxies=proxy)
@@ -78,6 +78,7 @@ def get_nodes(names,countries):
 def get_relationships(names):
     twitter_edges = list()
     for one_index, one_name in enumerate(names):
+        print(one_index,one_name)
         for two_index in range(one_index+1, len(names)):
             try:
                 relationship = api.ShowFriendship(
