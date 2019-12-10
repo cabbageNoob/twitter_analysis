@@ -17,8 +17,6 @@ TWITTER_NAMES_FILE = os.path.join(pwd_path, './clean_Twitter.csv')
 TWITTER_NODES_FILE = os.path.join(pwd_path, './result/twitter_nodes.json')
 TWITTER_EDGES_FILE = os.path.join(pwd_path, './result/twitter_edges.json')
 
-twitter_names = list()
-
 proxy = {"http": "http://127.0.0.1:1080", "https": "https://127.0.0.1:1080"}
 
 ACCESS_TOKEN = '1111937967235522560-N1Mzfz3TaWu9sw85jtITG6XvcXn8Cf'
@@ -28,6 +26,8 @@ CONSUMER_SECRET = '0BEJ4ZtvVfneDslkztTgNTGTvBD53l2G7zgnh4Ok5J3RHGEdVk'
 api = twitter.Api(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SECRET,
                   access_token_key=ACCESS_TOKEN, access_token_secret=ACCESS_SECRET, proxies=proxy)
 
+twitter_names = list()
+twitter_countries = list()
 
 def writejson2file(data, filename):
     with open(filename, 'w', encoding='utf8') as outfile:
@@ -47,15 +47,16 @@ def get_twitter_names():
     # pandas读入
     data = pd.read_csv(TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
-    return names
+    countries = list(np.array(data['country']))
+    return names,countries
 
 
 '''get the node informations'''
 
 
-def get_nodes(names):
+def get_nodes(names,countries):
     twitter_nodes = list()
-    for name in names:
+    for name,country in zip(names,countries):
         node = dict()
         try:
             status = api.GetUser(screen_name=name, return_json=True)
@@ -66,6 +67,7 @@ def get_nodes(names):
         node.setdefault('label', status.get('name'))
         node.setdefault('shape', 'circularImage')
         node.setdefault('image', status.get('profile_image_url'))
+        node.setdefault('title', country)
         twitter_nodes.append(node)
     writejson2file(twitter_nodes, TWITTER_NODES_FILE)
 
@@ -110,9 +112,9 @@ def test():
 
 
 if __name__ == '__main__':
-    twitter_names = get_twitter_names()
-    # get_nodes(twitter_names)
+    twitter_names,twitter_countries = get_twitter_names()
+    get_nodes(twitter_names,twitter_countries)
     # twitter_names = ['@ashrafghani', '@SalahRabbani', '@bnishaniZyrtare', '@ediramaal', '@ditmirbushati', '@fhollande', '@antonimartipeti', '@mauriciomacri', '@ZMnatsakanyan', '@TurnbullMalcolm',
     #                  '@HonJulieBishop']
-    get_relationships(twitter_names)
+    # get_relationships(twitter_names)
     # test()
