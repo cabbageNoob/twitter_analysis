@@ -1,26 +1,19 @@
 # -*- coding: UTF-8 -*-
-# Author: cjh（492795090@qq.com）
+# Author: 
 # Date: 19-12-10
 # Brief: use twint to get the relationships
-import os,json
+import config
+import os,json,sys
 import twint
 import twitter,time
 import pandas as pd
 import numpy as np
-proxy = {"http": "http://127.0.0.1:1080", "https": "https://127.0.0.1:1080"}
+import config
+sys.path.insert(0, os.getcwd())
 
-ACCESS_TOKEN = '1111937967235522560-N1Mzfz3TaWu9sw85jtITG6XvcXn8Cf'
-ACCESS_SECRET = 'IKBfbt4jWJtX4DTByH1ITW7i74qpRS0Nuh8LaGeGogZSa'
-CONSUMER_KEY = '5BZN0EFUNqMHQpfnj82MXMmej'
-CONSUMER_SECRET = '0BEJ4ZtvVfneDslkztTgNTGTvBD53l2G7zgnh4Ok5J3RHGEdVk'
-api = twitter.Api(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SECRET,
-                  access_token_key=ACCESS_TOKEN, access_token_secret=ACCESS_SECRET, proxies=proxy)
+api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
+                  access_token_key=config.ACCESS_TOKEN, access_token_secret=config.ACCESS_SECRET, proxies=config.proxy)
 
-pwd_path = os.path.abspath(os.path.dirname(__file__))
-
-TWITTER_NAMES_FILE = os.path.join(pwd_path, '../twitter_process/clean_Twitter.csv')
-TWITTER_NODES_FILE = os.path.join(pwd_path, './result/twitter_nodes.json')
-TWITTER_EDGES_FILE = os.path.join(pwd_path, './result/twitter_edges.json')
 
 '''Twint Config'''
 c = twint.Config()
@@ -39,15 +32,16 @@ def readjson(filename):
     with open(filename, 'rb') as outfile:
         return json.load(outfile)
 
+
 # name_id字典
-name_id = readjson(TWITTER_NODES_FILE)
+name_id = readjson(config.TWITTER_NODES_FILE)
 
 '''get the twitter names'''
 
 
 def get_twitter_names():
     # pandas读入
-    data = pd.read_csv(TWITTER_NAMES_FILE)
+    data = pd.read_csv(config.TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
     names = [name[1:] for name in names]
     return names
@@ -67,7 +61,7 @@ def get_nodes(names):
             print(identifier, name)
             continue
         twitter_nodes.setdefault(name, status.get('id'))
-    writejson2file(twitter_nodes, TWITTER_NODES_FILE)
+    writejson2file(twitter_nodes, config.TWINT_NODES_FILE)
 
 '''get the relationship informations'''
 
@@ -90,7 +84,7 @@ def get_relationships(names):
                 edge.setdefault('from', name_id[one_name])
                 edge.setdefault('to', name_id[two_name])
                 twitter_edges.append(edge)
-    writejson2file(twitter_edges, TWITTER_EDGES_FILE)
+    writejson2file(twitter_edges, config.TWINT_EDGES_FILE)
 
 
 '''get followings from a name'''

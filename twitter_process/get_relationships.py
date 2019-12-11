@@ -1,30 +1,20 @@
 # -*- coding: UTF-8 -*-
-# Author: cjh（492795090@qq.com）
+# Author: 
 # Date: 19-12-10
 # Brief:
 
 # create the object, assign it to a variable
 import twitter
-import os
+import os,sys
 import json
 import time
 import pandas as pd
 import numpy as np
+sys.path.insert(0, os.getcwd())
+import config
 
-pwd_path = os.path.abspath(os.path.dirname(__file__))
-
-TWITTER_NAMES_FILE = os.path.join(pwd_path, './clean_Twitter.csv')
-TWITTER_NODES_FILE = os.path.join(pwd_path, './result/twitter_nodes.json')
-TWITTER_EDGES_FILE = os.path.join(pwd_path, './result/twitter_edges.json')
-
-proxy = {"http": "http://127.0.0.1:1080", "https": "https://127.0.0.1:1080"}
-
-ACCESS_TOKEN    = '1111937967235522560-N1Mzfz3TaWu9sw85jtITG6XvcXn8Cf'
-ACCESS_SECRET   = 'IKBfbt4jWJtX4DTByH1ITW7i74qpRS0Nuh8LaGeGogZSa'
-CONSUMER_KEY    = '5BZN0EFUNqMHQpfnj82MXMmej'
-CONSUMER_SECRET = '0BEJ4ZtvVfneDslkztTgNTGTvBD53l2G7zgnh4Ok5J3RHGEdVk'
-api = twitter.Api(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SECRET,
-                  access_token_key=ACCESS_TOKEN, access_token_secret=ACCESS_SECRET, proxies=proxy)
+api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
+                  access_token_key=config.ACCESS_TOKEN, access_token_secret=config.ACCESS_SECRET, proxies=config.proxy)
 
 twitter_names = list()
 twitter_countries = list()
@@ -45,7 +35,7 @@ def readjson(filename):
 
 def get_twitter_names():
     # pandas读入
-    data = pd.read_csv(TWITTER_NAMES_FILE)
+    data = pd.read_csv(config.TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
     countries = list(np.array(data['country']))
     return names,countries
@@ -69,7 +59,7 @@ def get_nodes(names,countries):
         node.setdefault('image', status.get('profile_image_url'))
         node.setdefault('title', country)
         twitter_nodes.append(node)
-    writejson2file(twitter_nodes, TWITTER_NODES_FILE)
+    writejson2file(twitter_nodes, config.TWITTER_NODES_FILE)
 
 
 '''get the norelationship informations'''
@@ -103,7 +93,7 @@ def get_relationships(names):
                 edge.setdefault(
                     'to', relationship['relationship']['source']['id'])
                 twitter_edges.append(edge)
-    writejson2file(twitter_edges, TWITTER_EDGES_FILE)
+    writejson2file(twitter_edges, config.TWITTER_EDGES_FILE)
 
 
 def test():
@@ -113,7 +103,8 @@ def test():
 
 
 if __name__ == '__main__':
-    twitter_names,twitter_countries = get_twitter_names()
+    twitter_names, twitter_countries = get_twitter_names()
+    # print(twitter_names)
     # get_nodes(twitter_names,twitter_countries)
     # twitter_names = ['@ashrafghani', '@SalahRabbani', '@bnishaniZyrtare', '@ediramaal', '@ditmirbushati', '@fhollande', '@antonimartipeti', '@mauriciomacri', '@ZMnatsakanyan', '@TurnbullMalcolm',
     #                  '@HonJulieBishop']
