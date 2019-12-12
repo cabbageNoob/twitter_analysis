@@ -1,14 +1,23 @@
 # -*- coding: UTF-8 -*-
-# Author: 
-# Date: 19-12-10
-# Brief: use twint to get the relationships
+'''
+@Descripttion: use twint to get the relationships
+@version: 
+@Author: Da Chuang
+@Date: 2019-12-10 18:06:36
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-12 21:56:20
+'''
+
 import config
-import os,json,sys
 import twint
-import twitter,time
 import pandas as pd
 import numpy as np
-import config
+import twitter
+import time
+from utils import common_util
+import os
+import json
+import sys
 sys.path.insert(0, os.getcwd())
 
 api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
@@ -22,24 +31,16 @@ c.Proxy_port = '1080'
 c.Proxy_type = 'http'
 
 
-def writejson2file(data, filename):
-    with open(filename, 'w', encoding='utf8') as outfile:
-        data = json.dumps(data, indent=4, sort_keys=True, ensure_ascii=False)
-        outfile.write(data)
-
-
-def readjson(filename):
-    with open(filename, 'rb') as outfile:
-        return json.load(outfile)
-
-
 # name_id字典
-name_id = readjson(config.TWITTER_NODES_FILE)
-
-'''get the twitter names'''
+name_id = common_util.readjson(config.TWITTER_NODES_FILE)
 
 
 def get_twitter_names():
+    '''
+    @description: get the twitter names
+    @param {null} 
+    @return: 
+    '''
     # pandas读入
     data = pd.read_csv(config.TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
@@ -47,12 +48,12 @@ def get_twitter_names():
     return names
 
 
-
-
-'''get the node informations'''
-
-
 def get_nodes(names):
+    '''
+    @description: get the node informations
+    @param {names} 
+    @return: 
+    '''
     twitter_nodes = dict()
     for name in names:
         try:
@@ -61,14 +62,17 @@ def get_nodes(names):
             print(identifier, name)
             continue
         twitter_nodes.setdefault(name, status.get('id'))
-    writejson2file(twitter_nodes, config.TWINT_NODES_FILE)
-
-'''get the relationship informations'''
+    common_util.writejson2file(twitter_nodes, config.TWINT_NODES_FILE)
 
 
 def get_relationships(names):
+    '''
+    @description: get the relationship informations
+    @param {names} 
+    @return: 
+    '''
     twitter_edges = list()
-    print('names',names)
+    print('names', names)
     for one_name in names:
         print(names.index(one_name), one_name)
         try:
@@ -84,13 +88,15 @@ def get_relationships(names):
                 edge.setdefault('from', name_id[one_name])
                 edge.setdefault('to', name_id[two_name])
                 twitter_edges.append(edge)
-    writejson2file(twitter_edges, config.TWINT_EDGES_FILE)
-
-
-'''get followings from a name'''
+    common_util.writejson2file(twitter_edges, config.TWINT_EDGES_FILE)
 
 
 def get_followings(name):
+    '''
+    @description: get followings from a name
+    @param {name} 
+    @return: 
+    '''
     c = twint.Config()
     c.Proxy_host = '127.0.0.1'
     c.Proxy_port = '1080'
@@ -116,6 +122,3 @@ if __name__ == '__main__':
     # followings = get_followings('antonimartipeti')
     # print(followings)
     # print(len(followings))
- 
-   
-

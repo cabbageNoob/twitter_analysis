@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
-# Author:
-# Date:
-# Brief: config
+'''
+@Descripttion: 
+@version: 
+@Author: Da Chuang
+@Date: 2019-12-11 10:40:21
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-12 22:16:08
+'''
 
 import os
 # twitter api
@@ -13,18 +18,22 @@ CONSUMER_KEY = '5BZN0EFUNqMHQpfnj82MXMmej'
 CONSUMER_SECRET = '0BEJ4ZtvVfneDslkztTgNTGTvBD53l2G7zgnh4Ok5J3RHGEdVk'
 
 pwd_path = os.path.abspath(os.path.dirname(__file__))
+# twitter origin names file
+TWITTER_POLICES_NAME_FILE = os.path.join(
+    pwd_path, './data/origin_twitter_names/人物Twitter对应表英文.xlsx')
 # twitter 政要名单csv文件
-TWITTER_NAMES_FILE = os.path.join(pwd_path, './twitter_process/clean_Twitter.csv')
+TWITTER_NAMES_FILE = os.path.join(
+    pwd_path, './data/clean_twitter_names/clean_Twitter.csv')
 # twitter nodes json文件
-TWITTER_NODES_FILE = os.path.join(pwd_path, './twitter_process/result/twitter_nodes.json')
+TWITTER_NODES_FILE = os.path.join(
+    pwd_path, './twitter_process/result/twitter_nodes.json')
 # twitter edges json文件
-TWITTER_EDGES_FILE = os.path.join(pwd_path, './twitter_process/result/twitter_edges.json')
+TWITTER_EDGES_FILE = os.path.join(
+    pwd_path, './twitter_process/result/twitter_edges.json')
 
 # twint nodes json文件
-TWINT_NODES_FILE = os.path.join(pwd_path, '.twint_process/result/twint_nodes.json')
+TWINT_NODES_FILE = os.path.join(
+    pwd_path, './twint_process/result/twint_nodes.json')
 # twint nodes json文件
-TWINT_EDGES_FILE = os.path.join(pwd_path, '.twint_process/result/twint_edges.json')
-
-
-
-
+TWINT_EDGES_FILE = os.path.join(
+    pwd_path, './twint_process/result/twint_edges.json')

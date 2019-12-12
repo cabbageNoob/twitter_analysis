@@ -1,17 +1,24 @@
 # -*- coding: UTF-8 -*-
-# Author: 
-# Date: 19-12-10
-# Brief:
+'''
+@Descripttion: 
+@version: 
+@Author: Da Chuang
+@Date: 2019-12-10 09:52:57
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-12 22:22:13
+'''
 
 # create the object, assign it to a variable
+from utils import common_util
+import config
 import twitter
-import os,sys
+import os
+import sys
 import json
 import time
 import pandas as pd
 import numpy as np
 sys.path.insert(0, os.getcwd())
-import config
 
 api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
                   access_token_key=config.ACCESS_TOKEN, access_token_secret=config.ACCESS_SECRET, proxies=config.proxy)
@@ -19,34 +26,28 @@ api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSU
 twitter_names = list()
 twitter_countries = list()
 
-def writejson2file(data, filename):
-    with open(filename, 'w', encoding='utf8') as outfile:
-        data = json.dumps(data, indent=4, sort_keys=True, ensure_ascii=False)
-        outfile.write(data)
-
-
-def readjson(filename):
-    with open(filename, 'rb') as outfile:
-        return json.load(outfile)
-
-
-'''get the twitter names'''
-
 
 def get_twitter_names():
+    '''
+    @Descripttion: get the twitter names
+    @param {type} 
+    @return: 
+    '''
     # pandas读入
     data = pd.read_csv(config.TWITTER_NAMES_FILE)
     names = list(np.array(data['twitter@']))
     countries = list(np.array(data['country']))
-    return names,countries
+    return names, countries
 
 
-'''get the node informations'''
-
-
-def get_nodes(names,countries):
+def get_nodes(names, countries):
+    '''
+    @Descripttion: get the node informations
+    @param {type} 
+    @return: 
+    '''
     twitter_nodes = list()
-    for name,country in zip(names,countries):
+    for name, country in zip(names, countries):
         node = dict()
         try:
             status = api.GetUser(screen_name=name, return_json=True)
@@ -59,16 +60,19 @@ def get_nodes(names,countries):
         node.setdefault('image', status.get('profile_image_url'))
         node.setdefault('title', country)
         twitter_nodes.append(node)
-    writejson2file(twitter_nodes, config.TWITTER_NODES_FILE)
+    common_util.writejson2file(twitter_nodes, config.TWITTER_NODES_FILE)
 
-
-'''get the norelationship informations'''
 
 
 def get_relationships(names):
+    '''
+    @Descripttion: get the norelationship informations
+    @param {type} 
+    @return: 
+    '''
     twitter_edges = list()
     for one_index, one_name in enumerate(names):
-        print(one_index,one_name)
+        print(one_index, one_name)
         for two_index in range(one_index+1, len(names)):
             try:
                 relationship = api.ShowFriendship(
@@ -93,7 +97,7 @@ def get_relationships(names):
                 edge.setdefault(
                     'to', relationship['relationship']['source']['id'])
                 twitter_edges.append(edge)
-    writejson2file(twitter_edges, config.TWITTER_EDGES_FILE)
+    common_util.writejson2file(twitter_edges, config.TWITTER_EDGES_FILE)
 
 
 def test():

@@ -1,30 +1,32 @@
 # -*- coding: UTF-8 -*-
-# Author: 
-# Date: 19-12-10
-# Brief:
-import json
-import re
+'''
+@Descripttion: flask run function
+@version: 
+@Author: Da Chuang
+@Date: 2019-12-10 09:33:16
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-12 22:13:19
+'''
 import sys
 import os
+import json
+import re
 sys.path.insert(0, os.getcwd())
-import config
-
 from flask import Flask, render_template, redirect, request
+import config
+from utils import common_util
+
 app = Flask(__name__)
 
 
-def readjson(filename):
-    with open(filename, 'rb') as outfile:
-        return json.load(outfile)
-
 @app.route("/", methods=["GET", "POST"])
 def index():
-    data=dict()
-    nodes = readjson(config.TWITTER_NODES_FILE)
-    edges = readjson(config.TWITTER_EDGES_FILE)
+    data = dict()
+    nodes = common_util.readjson(config.TWITTER_NODES_FILE)
+    edges = common_util.readjson(config.TWITTER_EDGES_FILE)
     data['nodes'] = nodes
     data['edges'] = edges
-    return render_template("graph_show.html",data=json.dumps(data))
+    return render_template("graph_show.html", data=json.dumps(data))
 
 
 if __name__ == '__main__':

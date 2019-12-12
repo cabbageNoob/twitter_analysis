@@ -1,9 +1,14 @@
-# -*- coding: UTF-8 -*-
-# Author:
-# Date: 19-12-11
-# Brief: get twitters related to China
-import twitter
+'''
+@Descripttion: get twitters related to China
+@version: 
+@Author: Da Chuang
+@Date: 2019-12-11 22:45:48
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-12 22:22:53
+'''
+from utils import common_util
 import twint
+import twitter
 import config
 import os
 import json
@@ -21,20 +26,32 @@ c.Proxy_host = '127.0.0.1'
 c.Proxy_port = '1080'
 c.Proxy_type = 'http'
 
-'''scrapy realDonaldTrump's tweets related to China and save output file'''
+names = list(common_util.readjson(config.TWINT_NODES_FILE).keys())
 
 
-def get_tweet_related_china():
-    c.Username = 'realDonaldTrump'
-    c.Search = 'China'
-    # c.Store_json=True
-    c.Store_csv = True
-    c.Replies = True
-    c.Custom["tweet"] = ["id", "date", "time", "tweet"]
-    # c.Output = 'DonaldTrump.json'
-    c.Output = "DonaldTrump_reply.csv"
-    twint.run.Search(c)
+def get_tweet_related_china(names):
+    '''
+    @description: scrapy realDonaldTrump's tweets related to China and save output file
+    @param {names} 
+    @return: 
+    '''
+    for name in names:
+        print(name)
+        c = twint.Config()
+        c.Proxy_host = '127.0.0.1'
+        c.Proxy_port = '1080'
+        c.Proxy_type = 'http'
+        c.Username = name
+        c.Search = 'China'
+        c.Store_csv = True
+        c.Custom["tweet"] = ["id", "username", "date", "time", "tweet"]
+        c.Output = './data/tweet_related_china/' + name + ".csv"  #
+        try:
+            twint.run.Search(c)
+        except Exception as e:
+            print(e)
+            continue
 
 
 if __name__ == '__main__':
-    get_tweet_related_china()
+    get_tweet_related_china(names)
