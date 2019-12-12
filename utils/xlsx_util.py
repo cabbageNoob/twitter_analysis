@@ -5,15 +5,14 @@
 @Author: Da Chuang
 @Date: 2019-12-12 17:06:19
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:20:40
+@LastEditTime: 2019-12-12 22:35:58
 '''
-import pandas as pd
-from openpyxl import load_workbook
-import config
 import os
 import sys
 sys.path.insert(0, os.getcwd())
-
+import pandas as pd
+from openpyxl import load_workbook
+import config
 
 def get_clean_data():
     '''

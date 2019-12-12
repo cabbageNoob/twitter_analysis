@@ -5,19 +5,15 @@
 @Author: Da Chuang
 @Date: 2019-12-10 09:33:16
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:13:19
+@LastEditTime: 2019-12-12 22:49:01
 '''
-import sys
-import os
-import json
-import re
+import sys, os, json, re
 sys.path.insert(0, os.getcwd())
-from flask import Flask, render_template, redirect, request
-import config
 from utils import common_util
+import config
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():

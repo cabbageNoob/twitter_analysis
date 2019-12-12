@@ -5,20 +5,21 @@
 @Author: Da Chuang
 @Date: 2019-12-10 09:52:57
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:22:13
+@LastEditTime: 2019-12-12 22:50:21
 '''
-
-# create the object, assign it to a variable
-from utils import common_util
-import config
-import twitter
 import os
 import sys
-import json
-import time
-import pandas as pd
-import numpy as np
 sys.path.insert(0, os.getcwd())
+
+import numpy as np
+import pandas as pd
+import time, json
+import twitter
+import config
+from utils import common_util
+
+# create the object, assign it to a variable
+
 
 api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
                   access_token_key=config.ACCESS_TOKEN, access_token_secret=config.ACCESS_SECRET, proxies=config.proxy)
@@ -61,7 +62,6 @@ def get_nodes(names, countries):
         node.setdefault('title', country)
         twitter_nodes.append(node)
     common_util.writejson2file(twitter_nodes, config.TWITTER_NODES_FILE)
-
 
 
 def get_relationships(names):

@@ -4,16 +4,16 @@
 @Author: Da Chuang
 @Date: 2019-12-11 22:45:48
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:22:53
+@LastEditTime: 2019-12-12 22:51:40
 '''
-from utils import common_util
-import twint
-import twitter
-import config
 import os
 import json
 import sys
 sys.path.insert(0, os.getcwd())
+from utils import common_util
+import twint
+import twitter
+import config
 
 
 api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,

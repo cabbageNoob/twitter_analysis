@@ -5,20 +5,19 @@
 @Author: Da Chuang
 @Date: 2019-12-10 18:06:36
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 21:56:20
+@LastEditTime: 2019-12-12 22:52:07
 '''
-
-import config
-import twint
-import pandas as pd
-import numpy as np
-import twitter
-import time
-from utils import common_util
 import os
 import json
 import sys
 sys.path.insert(0, os.getcwd())
+import config
+import twint, twitter
+import pandas as pd
+import numpy as np
+import time
+from utils import common_util
+
 
 api = twitter.Api(consumer_key=config.CONSUMER_KEY, consumer_secret=config.CONSUMER_SECRET,
                   access_token_key=config.ACCESS_TOKEN, access_token_secret=config.ACCESS_SECRET, proxies=config.proxy)
@@ -108,7 +107,6 @@ def get_followings(name):
     twint.run.Following(c)
     followed = twint.storage.panda.Follow_df["following"].tolist()[0]
     twint.storage.panda.Follow_df = None
-
     return followed
 
 
