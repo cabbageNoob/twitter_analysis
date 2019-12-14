@@ -4,7 +4,7 @@
  * @Author: Da Chuang
  * @Date: 2019-12-10 09:48:42
  * @LastEditors: Da Chuang
- * @LastEditTime: 2019-12-13 23:09:45
+ * @LastEditTime: 2019-12-14 20:54:47
  -->
 
 <html>
@@ -30,6 +30,7 @@
             edges = data.edges
         }
         var nodesDataset = new vis.DataSet(nodes)
+        console.log('----nodesDataset', nodesDataset)
         var edgesDataset = new vis.DataSet(edges)
         var container = document.getElementById("VIS_draw");
         // console.log(nodesDataset,edgesDataset)
@@ -39,6 +40,7 @@
         };
         var options = {
             nodes: {
+                shape:'circularImage',
                 size: 20,
                 font: {
                     size: 15
@@ -49,7 +51,7 @@
                     size: 10,
                     align: 'center'
                 },
-                color: 'red',
+                // color: 'red',
                 arrows: {
                     to: {
                         enabled: true,
@@ -92,12 +94,16 @@
 
                 // mark all nodes as hard to read.
                 for (var nodeId in allNodes) {
-                    allNodes[nodeId].color = 'rgba(200,200,200,0.5)';
-                    // allNodes[nodeId].image = undefined
+                    // allNodes[nodeId].color = 'rgba(200,200,200,0.5)';
                     if (allNodes[nodeId].hiddenLabel === undefined) {
                         allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
                         allNodes[nodeId].label = undefined;
                     }
+                    if (allNodes[nodeId].hideenImage === undefined){
+                        allNodes[nodeId].hideenImage = allNodes[nodeId].image;
+                    }
+                    allNodes[nodeId].image = "{{ url_for('static', filename='img/miss.jpg') }}";
+                    allNodes[nodeId].size=20;
                 }
                 var connectedNodes = network.getConnectedNodes(selectedNode);
                 var allConnectedNodes = [];
@@ -111,7 +117,7 @@
 
                 // all second degree nodes get a different color and their label back
                 for (i = 0; i < allConnectedNodes.length; i++) {
-                    allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
+                    // allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
                     if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
                         allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
                         allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
@@ -120,8 +126,9 @@
 
                 // all first degree nodes get their own color and their label back
                 for (i = 0; i < connectedNodes.length; i++) {
-                    allNodes[connectedNodes[i]].color = undefined;
-                    // allNodes[connectedNodes[i]].image = undefined;
+                    // allNodes[connectedNodes[i]].color = undefined;
+                    allNodes[connectedNodes[i]].image = allNodes[connectedNodes[i]].hideenImage;
+                    allNodes[connectedNodes[i]].size=30;
                     if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
                         allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
                         allNodes[connectedNodes[i]].hiddenLabel = undefined;
@@ -129,8 +136,9 @@
                 }
 
                 // the main node gets its own color and its label back.
-                allNodes[selectedNode].color = undefined;
-                // allNodes[selectedNode].image = undefined;
+                // allNodes[selectedNode].color = undefined;
+                allNodes[selectedNode].image = allNodes[selectedNode].hideenImage;
+                allNodes[selectedNode].size=30;
                 if (allNodes[selectedNode].hiddenLabel !== undefined) {
                     allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
                     allNodes[selectedNode].hiddenLabel = undefined;
@@ -138,8 +146,9 @@
             } else if (highlightActive === true) {
                 // reset all nodes
                 for (var nodeId in allNodes) {
-                    allNodes[nodeId].color = undefined;
-                    // allNodes[nodeId].image = undefined;
+                    // allNodes[nodeId].color = undefined;
+                    allNodes[nodeId].image = allNodes[nodeId].hideenImage;
+                    allNodes[nodeId].size=20;
                     if (allNodes[nodeId].hiddenLabel !== undefined) {
                         allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
                         allNodes[nodeId].hiddenLabel = undefined;
@@ -155,7 +164,6 @@
                     updateArray.push(allNodes[nodeId]);
                 }
             }
-            console.log('updateArray', updateArray)
             nodesDataset.update(updateArray);
         }
     </script>

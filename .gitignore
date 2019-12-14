@@ -1,3 +1,6 @@
 .idea
 .vscode
 __pycache__
+
+# other unrelevant file 
+src

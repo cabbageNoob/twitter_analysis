@@ -5,7 +5,7 @@
 @Author: Da Chuang
 @Date: 2019-12-10 09:52:57
 @LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:50:21
+@LastEditTime: 2019-12-14 19:25:25
 '''
 import os
 import sys
@@ -109,8 +109,8 @@ def test():
 if __name__ == '__main__':
     twitter_names, twitter_countries = get_twitter_names()
     # print(twitter_names)
-    # get_nodes(twitter_names,twitter_countries)
+    get_nodes(twitter_names,twitter_countries)
     # twitter_names = ['@ashrafghani', '@SalahRabbani', '@bnishaniZyrtare', '@ediramaal', '@ditmirbushati', '@fhollande', '@antonimartipeti', '@mauriciomacri', '@ZMnatsakanyan', '@TurnbullMalcolm',
     #                  '@HonJulieBishop']
-    get_relationships(twitter_names)
+    # get_relationships(twitter_names)
     # test()
