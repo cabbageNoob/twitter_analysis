@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Da Chuang
  * @Date: 2019-12-10 09:48:42
- * @LastEditors: Da Chuang
- * @LastEditTime: 2019-12-14 20:54:47
+ * @LastEditors: cjh (492795090@qq.com)
+ * @LastEditTime: 2019-12-16 10:18:18
  -->
 
 <html>
@@ -42,6 +42,7 @@
             nodes: {
                 shape:'circularImage',
                 size: 20,
+                color:'red',
                 font: {
                     size: 15
                 }
@@ -51,7 +52,7 @@
                     size: 10,
                     align: 'center'
                 },
-                // color: 'red',
+                color: { inherit: 'from' },
                 arrows: {
                     to: {
                         enabled: true,
@@ -94,7 +95,7 @@
 
                 // mark all nodes as hard to read.
                 for (var nodeId in allNodes) {
-                    // allNodes[nodeId].color = 'rgba(200,200,200,0.5)';
+                    allNodes[nodeId].color = 'rgba(200,200,200,0.5)';
                     if (allNodes[nodeId].hiddenLabel === undefined) {
                         allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
                         allNodes[nodeId].label = undefined;
@@ -117,7 +118,7 @@
 
                 // all second degree nodes get a different color and their label back
                 for (i = 0; i < allConnectedNodes.length; i++) {
-                    // allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
+                    allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
                     if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
                         allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
                         allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
@@ -126,7 +127,7 @@
 
                 // all first degree nodes get their own color and their label back
                 for (i = 0; i < connectedNodes.length; i++) {
-                    // allNodes[connectedNodes[i]].color = undefined;
+                    allNodes[connectedNodes[i]].color = 'red';
                     allNodes[connectedNodes[i]].image = allNodes[connectedNodes[i]].hideenImage;
                     allNodes[connectedNodes[i]].size=30;
                     if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
@@ -136,7 +137,7 @@
                 }
 
                 // the main node gets its own color and its label back.
-                // allNodes[selectedNode].color = undefined;
+                allNodes[selectedNode].color = 'red';
                 allNodes[selectedNode].image = allNodes[selectedNode].hideenImage;
                 allNodes[selectedNode].size=30;
                 if (allNodes[selectedNode].hiddenLabel !== undefined) {
@@ -146,7 +147,7 @@
             } else if (highlightActive === true) {
                 // reset all nodes
                 for (var nodeId in allNodes) {
-                    // allNodes[nodeId].color = undefined;
+                    allNodes[nodeId].color = 'red';
                     allNodes[nodeId].image = allNodes[nodeId].hideenImage;
                     allNodes[nodeId].size=20;
                     if (allNodes[nodeId].hiddenLabel !== undefined) {
