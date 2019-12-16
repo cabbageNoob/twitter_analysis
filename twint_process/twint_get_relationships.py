@@ -4,8 +4,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 18:06:36
-@LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:52:07
+@LastEditors: cjh (492795090@qq.com)
+@LastEditTime: 2019-12-16 19:54:50
 '''
 import os
 import json
@@ -31,8 +31,8 @@ c.Proxy_type = 'http'
 
 
 # name_id字典
-name_id = common_util.readjson(config.TWITTER_NODES_FILE)
-
+name_id = common_util.readjson(config.TWINT_NODES_FILE)
+print(type(name_id))
 
 def get_twitter_names():
     '''
@@ -71,7 +71,6 @@ def get_relationships(names):
     @return: 
     '''
     twitter_edges = list()
-    print('names', names)
     for one_name in names:
         print(names.index(one_name), one_name)
         try:

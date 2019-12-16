@@ -4,8 +4,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 09:33:16
-@LastEditors: Da Chuang
-@LastEditTime: 2019-12-13 23:03:04
+@LastEditors: cjh (492795090@qq.com)
+@LastEditTime: 2019-12-16 21:16:04
 '''
 import sys, os, json, re
 sys.path.insert(0, os.getcwd())
@@ -19,7 +19,7 @@ app = Flask(__name__)
 def index():
     data = dict()
     nodes = common_util.readjson(config.TWITTER_NODES_FILE)
-    edges = common_util.readjson(config.TWITTER_EDGES_FILE)
+    edges = common_util.readjson(config.TWINT_EDGES_FILE)
     data['nodes'] = nodes
     data['edges'] = edges
     return render_template("graph_show.html", data=json.dumps(data))

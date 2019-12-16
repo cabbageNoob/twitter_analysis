@@ -4,8 +4,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 09:52:57
-@LastEditors: Da Chuang
-@LastEditTime: 2019-12-14 19:25:25
+@LastEditors: cjh (492795090@qq.com)
+@LastEditTime: 2019-12-16 19:39:55
 '''
 import os
 import sys
@@ -57,7 +57,6 @@ def get_nodes(names, countries):
             continue
         node.setdefault('id', status.get('id'))
         node.setdefault('label', status.get('name'))
-        node.setdefault('shape', 'circularImage')
         node.setdefault('image', status.get('profile_image_url'))
         node.setdefault('title', country)
         twitter_nodes.append(node)
