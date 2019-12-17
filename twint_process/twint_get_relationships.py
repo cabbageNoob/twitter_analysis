@@ -1,12 +1,12 @@
-# -*- coding: UTF-8 -*-
 '''
-@Descripttion: use twint to get the relationships
+@Descripttion: 
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 18:06:36
-@LastEditors: cjh (492795090@qq.com)
-@LastEditTime: 2019-12-16 19:54:50
+@LastEditors: Da Chuang
+@LastEditTime: 2019-12-17 20:59:26
 '''
+
 import os
 import json
 import sys

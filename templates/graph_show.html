@@ -3,10 +3,9 @@
  * @version: 
  * @Author: Da Chuang
  * @Date: 2019-12-10 09:48:42
- * @LastEditors: cjh (492795090@qq.com)
- * @LastEditTime: 2019-12-16 10:42:22
+ * @LastEditors: Da Chuang
+ * @LastEditTime: 2019-12-17 20:58:58
  -->
-
 <html>
 
 <head>
@@ -39,9 +38,9 @@
         };
         var options = {
             nodes: {
-                shape:'circularImage',
+                shape: 'circularImage',
                 size: 20,
-                color:'red',
+                color: 'red',
                 font: {
                     size: 15
                 }
@@ -51,7 +50,9 @@
                     size: 10,
                     align: 'center'
                 },
-                color: { inherit: 'from' },
+                color: {
+                    inherit: 'from'
+                },
                 arrows: {
                     to: {
                         enabled: true,
@@ -82,6 +83,10 @@
         allNodes = nodesDataset.get({
             returnType: "Object"
         });
+        allEdges = edgesDataset.get({
+            returnType: "Object"
+        })
+
         network.on("click", neighbourhoodHighlight);
 
         function neighbourhoodHighlight(params) {
@@ -99,13 +104,29 @@
                         allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
                         allNodes[nodeId].label = undefined;
                     }
-                    if (allNodes[nodeId].hideenImage === undefined){
+                    if (allNodes[nodeId].hideenImage === undefined) {
                         allNodes[nodeId].hideenImage = allNodes[nodeId].image;
                     }
                     allNodes[nodeId].image = "{{ url_for('static', filename='img/miss.jpg') }}";
-                    allNodes[nodeId].size=20;
+                    allNodes[nodeId].size = 20;
+                }
+                for (var edgeId in allEdges) {
+                    allEdges[edgeId].color = {
+                        color: undefined
+                    }
                 }
                 var connectedNodes = network.getConnectedNodes(selectedNode);
+                var connectedNodes_from = network.getConnectedNodes(selectedNode, direction = 'from');
+                var connectedEdges = network.getConnectedEdges(selectedNode);
+                var connectedEdges_from = [];
+                // get the from edges of the selected node
+                for (i = 0; i < connectedEdges.length; i++) {
+                    two_nodes = network.getConnectedNodes(connectedEdges[i]);
+                    if (two_nodes[1] == selectedNode) {
+                        connectedEdges_from.push(connectedEdges[i])
+                    }
+                }
+
                 var allConnectedNodes = [];
 
                 // get the second degree nodes
@@ -126,19 +147,24 @@
 
                 // all first degree nodes get their own color and their label back
                 for (i = 0; i < connectedNodes.length; i++) {
-                    allNodes[connectedNodes[i]].color = 'red';
+                    // allNodes[connectedNodes[i]].color = 'red';
                     allNodes[connectedNodes[i]].image = allNodes[connectedNodes[i]].hideenImage;
-                    allNodes[connectedNodes[i]].size=30;
+                    allNodes[connectedNodes[i]].size = 30;
                     if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
                         allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
                         allNodes[connectedNodes[i]].hiddenLabel = undefined;
                     }
                 }
-
+                // the edge to the selected node get light blue color
+                for (i = 0; i < connectedEdges_from.length; i++) {
+                    allEdges[connectedEdges_from[i]].color = {
+                        color: 'blue'
+                    };
+                }
                 // the main node gets its own color and its label back.
                 allNodes[selectedNode].color = 'red';
                 allNodes[selectedNode].image = allNodes[selectedNode].hideenImage;
-                allNodes[selectedNode].size=30;
+                allNodes[selectedNode].size = 30;
                 if (allNodes[selectedNode].hiddenLabel !== undefined) {
                     allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
                     allNodes[selectedNode].hiddenLabel = undefined;
@@ -148,11 +174,17 @@
                 for (var nodeId in allNodes) {
                     allNodes[nodeId].color = 'red';
                     allNodes[nodeId].image = allNodes[nodeId].hideenImage;
-                    allNodes[nodeId].size=20;
+                    allNodes[nodeId].size = 20;
                     if (allNodes[nodeId].hiddenLabel !== undefined) {
                         allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
                         allNodes[nodeId].hiddenLabel = undefined;
                     }
+                }
+                // reset all edges
+                for (var edgeId in allEdges) {
+                    allEdges[edgeId].color = {
+                        color: undefined
+                    };
                 }
                 highlightActive = false
             }
@@ -165,6 +197,15 @@
                 }
             }
             nodesDataset.update(updateArray);
+            // update the edges
+            updateArray = []
+            for (edgeId in allEdges) {
+                if (allEdges.hasOwnProperty(edgeId)) {
+                    updateArray.push(allEdges[edgeId]);
+                }
+            }
+            console.log(updateArray)
+            edgesDataset.update(updateArray);
         }
     </script>
 </body>

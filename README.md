@@ -3,12 +3,15 @@
  * @version: 
  * @Author: Da Chuang
  * @Date: 2019-12-10 09:32:42
- * @LastEditors: cjh (492795090@qq.com)
- * @LastEditTime: 2019-12-16 21:08:03
+ * @LastEditors: Da Chuang
+ * @LastEditTime: 2019-12-17 20:59:08
  -->
+
 # 外国政要社交媒体言论采集与分析
 ## 使用twitter爬虫爬取外国政要关系
 ![nodes.png](./doc/git_images/nodes_edges.png)
+## 观察Trump的社交网络
+![trump_social_network](./doc/git_images/trump.png)
 
 ## 使用twint爬取关系数据
 直接运行twint_process目录下的twint_get_relationships.py文件，运行完成后关系数据会保存在result/twitter_edges.json文件中
