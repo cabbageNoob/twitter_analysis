@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Da Chuang
  * @Date: 2019-12-10 09:32:42
- * @LastEditors: Da Chuang
- * @LastEditTime: 2019-12-17 20:59:08
+ * @LastEditors  : Da Chuang
+ * @LastEditTime : 2019-12-24 19:08:15
  -->
 
 # 外国政要社交媒体言论采集与分析
@@ -19,6 +19,9 @@
 ## 根据政要名单，爬取与中国相关的tweet
 - 根据已整理出的86位名单，已经全部得到与中国相关的tweet，爬取代码在twint_process/twint_get_twitter_china.py中。
 - 爬取的数据在data/tweet_related_china目录下，以csv文件存放，每个csv文件为一位政要所有与中国相关的tweet
+ 
+## 爬取了特朗普自16年到19年12月24日的所有推文信息
+- 数据文件在[data/tweet_related_realDonaldTrump/realDonaldTrump.csv](./data/tweet_related_realDonaldTrump/realDonaldTrump.csv)
 
 ## TODO
 - 目前该名单数据并不完整，待以后整理出完整数据后，重新跑nodes和edges数据
