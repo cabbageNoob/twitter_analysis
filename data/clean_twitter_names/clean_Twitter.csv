@@ -1,7 +1,6 @@
 ﻿country,name,head,twittername,twitter@
-AMERICA,Donald J. Trump,......,Donald J. Trump,@realDonaldTrump
 AFGHANISTAN,Mohammad Ashraf Ghani Ahmadzai,President of the Islamic Republic of Afghanistan,Ashraf Ghani,@ashrafghani
-AFGHANISTAN, Salahuddin Rabbani,Minister for Foreign Affairs of the Islamic Republic of Afghanistan,Salahuddin Rabbani,@SalahRabbani
+AFGHANISTAN,Salahuddin Rabbani,Minister for Foreign Affairs of the Islamic Republic of Afghanistan,Salahuddin Rabbani,@SalahRabbani
 ALBANIA,Bujar Nishani,President of the Republic of Albania,Bujar Nishani,@bnishaniZyrtare
 ALBANIA,Edi Rama,Prime Minister of the Republic of Albania,Edi Rama,@ediramaal
 ALBANIA,Ditmir Bushati,Minister for Foreign Affairs of the Republic of Albania,Ditmir Bushati,@ditmirbushati
@@ -11,7 +10,7 @@ ARGENTINA,Excelentísimo Señor Mauricio Macri,Presidente de la República Argen
 ARGENTINA,Zohrab Mnatsakanyan,None,Zohrab Mnatsakanyan,@ZMnatsakanyan
 ARGENTINA,Malcolm Turnbull. MP,Prime Minister of the Commonwealth of Australia,Malcolm Turnbull,@TurnbullMalcolm
 ARGENTINA,Julie Bishop,Minister for Foreign Affairs of the Commonwealth of Australia,Julie Bishop,@HonJulieBishop
-AZERBAIJAN, Ilham Heydar oglu Aliyev,President of the Republic of Azerbaijan,Ilham Aliyev,@presidentaz
+AZERBAIJAN,Ilham Heydar oglu Aliyev,President of the Republic of Azerbaijan,Ilham Aliyev,@presidentaz
 AZERBAIJAN,Monsieur Charles Michel,Premier Ministre du Royaume de Belgique,Charles Michel,@CharlesMichel
 AZERBAIJAN,Monsieur Aurélien Agbenonci,Ministre des Affaires étrangères et de la Coopération de la République du Bénin,Présidence du Bénin,@PresidenceBenin
 BOLIVIA (PLURINATIONAL STATE OF),Evo Morales Ayma,Presidente Constitucional del Estado Plurinacional de Bolivia,Evo Morales Ayma,@evoespueblo
@@ -34,8 +33,45 @@ CROATIA,None,Ministerio de Relaciones Exteriores de la República d,Cancillería
 CYPRUS,Mr. Nicos Anastasiades,President of the Republic of Cyprus,Nicos Anastasiades,@AnastasiadesCY
 CYPRUS,Mr. Ioannis Kasoulides,Minister for Foreign Affairs of the Republic of Cyprus,Ioannis Kasoulides,@IKasoulides
 CYPRUS,Lubomír Zaorálek,Minister for Foreign Affairs of the Czech Republic,Lubomír Zaorálek,@ZaoralekL
-CYPRUS,Monsieur Matteo Renzi,Président du Conseil des Ministres de la République italienne,Matteo Renzi,@matteorenzi
-CYPRUS,Monsieur Paolo Gentiloni,Ministre des Affaires étrangères et de la Coopération internationale de la République italienne,Paolo Gentiloni,@PaoloGentiloni
+CYPRUS,Mr. Lars Løkke Rasmussen,Prime Minister of Denmark,Lars Løkke Rasmussen,@larsloekke
+CYPRUS,Mr. Kristian Jensen,Minister for Foreign Affairs of Denmark,Kristian Jensen,@Kristian_Jensen
+DJIBOUTI,Monsieur Ismaël Omar Guelleh,Président de la République de Djibouti et Chef du Gouvernement,Ismail Omar Guelleh,@IsmailOguelleh
+DOMINICAN REPUBLIC,Danilo Medina Sánchez,Presidente de la República Dominicana,Danilo Medina,@DaniloMedina
+DOMINICAN REPUBLIC,Miguel Vargas Maldonado,Ministro de Relaciones Exteriores de la República Dominicana,Miguel Vargas,@MiguelVargasM
+ECUADOR,Rafael Correa,Presidente Constitucional de la República del Ecuador,Rafael Correa,@MashiRafael
+ECUADOR,Guillaume Long,Ministro de Relaciones Exteriores y Movilidad Humana de la República del Ecuador,Guillaume Long,@GuillaumeLong
+EGYPT,Mr. Abdel Fattah Al Sisi,President of the Arab Republic of Egypt,Abdelfattah Elsisi,@AlsisiOfficial
+EL SALVADOR,Salvador Sánchez Cerén,Presidente de la República de El Salvador,Salvador Sánchez Cerén,@sanchezceren
+ESTONIA,Mr. Toomas Hendrik Ilves,President of the Republic of Estonia,toomas hendrik ilves,@IlvesToomas
+ESTONIA,Mr. Taavi Rõivas,Prime Minister of the Republic of Estonia,Taavi Rõivas,@TaaviRoivas
+ESTONIA,Mrs. Marina Kaljurand,Minister for Foreign Affairs of the Republic of Estonia,Marina Kaljurand MEP,@MarinaKaljurand
+ESTONIA,Tedros Adhanom Ghebreyesus,Minister for Foreign Affairs of the Federal Democratic Republic of Ethiopia,Tedros Adhanom Ghebreyesus,@DrTedros
+FINLAND,Sauli Niinistö,President of the Republic of Finland,Sauli Niinistö,@niinisto
+FINLAND,Juha Sipilä,Prime Minister of the Republic of Finland,@juhasipila,Juha Sipilä
+FRANCE,Monsieur François Hollande,Président de la République française,François Hollande,@fhollande
+FRANCE,Monsieur Manuel Valls,Premier Ministre de la République française,Manuel Valls,@manuelvalls
+FRANCE,Monsieur Jean-Marc Ayrault,Ministre des affaires étrangères et du développement international de la République française,Jean-Marc Ayrault,@jeanmarcayrault
+GABON,Monsieur Ali Bongo Ondimba,Président de la République gabonaise,Ali Bongo Ondimba,@PresidentABO
+GABON,Giorgi Kvirikashvili,Prime Minister of Georgia,Giorgi Kvirikashvili,@KvirikashviliGi
+GABON,Mikheil Janelidze,Minister for Foreign Affairs of Georgia,Mikheil Janelidze,@JanelidzeMkh
+GHANA,John Dramani Mahama,President of the Republic of Ghana,John Dramani Mahama,@JDMahama ‏
+GHANA,Alexis Tsipras,Prime Minister of the Hellenic Republic,Alexis Tsipras,@tsipras_eu
+GHANA,Alexis Tsipras,Prime Minister of the Hellenic Republic,Αλέξης Τσίπρας - Alexis Tsipras,@atsipras   ‏
+GUATEMALA,Jimmy Morales,Presidente de la República de Guatemala,Jimmy Morales,@jimmymoralesgt
+HONDURAS,Juan Orlando Hernández Alvarado,Presidente de la República de Honduras,Juan Orlando H.,@JuanOrlandoH
+INDIA,Pranab Mukherjee,President of the Republic of India,Pranab Mukherjee,@CitiznMukherjee
+INDIA,Narendra Modi,Prime Minister of the Republic of India,Narendra Modi,@narendramodi
+INDIA,Sushma Swaraj,Minister for External Affairs of the Republic of India,Sushma Swaraj,@SushmaSwaraj
+INDONESIA,Joko Widodo,President of the Republic of Indonesia,Joko Widodo,@jokowi
+IRAN (ISLAMIC REPUBLIC OF),Hassan Rouhani,President of the Islamic Republic of Iran,Hassan Rouhani,@HassanRouhani
+IRAN (ISLAMIC REPUBLIC OF),M. Javad Zarif,Minister for Foreign Affairs of the Islamic Republic of Iran,Javad Zarif,@JZarif
+IRAN (ISLAMIC REPUBLIC OF),Haider Al Abadi,Prime Minister of the Republic of Iraq,Haider Al-Abadi حيدر العبادي,@HaiderAlAbadi
+IRELAND,Michael D. Higgins,President of Ireland,Michael D Higgins,@MichaelDHiggins
+IRELAND,Enda Kenny T.D.,Taoiseach of Ireland,Enda Kenny,@EndaKennyTD
+ISRAEL,Reuven Rivlin,President of the State of Israel,Reuven Rivlin,@PresidentRuvi
+ISRAEL,Benjamin Netanyahu,Prime Minister. Minister for Foreign Affairs. Minister for the Economy. Minister for Communications. and Minister for Regional Cooperation of the State of Israel,Benjamin Netanyahu,@netanyahu
+ISRAEL,Monsieur Matteo Renzi,Président du Conseil des Ministres de la République italienne,Matteo Renzi,@matteorenzi
+ISRAEL,Monsieur Paolo Gentiloni,Ministre des Affaires étrangères et de la Coopération internationale de la République italienne,Paolo Gentiloni,@PaoloGentiloni
 JAMAICA,Sir Patrick Allen. ON. GCMG. CD. KStJ,Governor-General of Jamaica,Patrick Allen,@RPatrickAllen
 JAMAICA,Andrew Holness. ON. MP,Prime Minister of Jamaica，Minister of Defence. Economic Growth and Job Creation,Andrew Holness,@AndrewHolnessJM
 JAMAICA,Shinzo Abe,Prime Minister of Japan,安倍晋三,@AbeShinzo
@@ -51,7 +87,7 @@ LITHUANIA,Dalia Grybauskaitė,President of the Republic of Lithuania,Dalia Gryba
 LITHUANIA,Monsieur Xavier Bettel,Premier Ministre. Ministre d'État. Ministre des Communications et des Médias et Ministre des Cultes du Grand-Duché de Luxembourg,Xavier Bettel,@Xavier_Bettel
 LITHUANIA,Dato’ Sri Mohd Najib bin Tun Haji Abdul Razak,Prime Minister and Minister for Finance of Malaysia,Mohd Najib Tun Razak,@NajibRazak
 LITHUANIA,Monsieur Abdoulaye Diop,Ministre des Affaires étrangères. de la Coopération internationale et de l'Intégration africaine de la République du Mali,Amb. Abdoulaye Diop,@AbdoulayeDiop8
-LITHUANIA, Joseph Muscat,Prime Minister of the Republic of Malta,Joseph Muscat,@JosephMuscat_JM
+LITHUANIA,Joseph Muscat,Prime Minister of the Republic of Malta,Joseph Muscat,@JosephMuscat_JM
 MARSHALL ISLANDS,Hilda C. Heine,President of the Republic of the Marshall Islands,Dr. Hilda C. Heine,@President_Heine
 MARSHALL ISLANDS,Mr. Pushpa Kamal Dahal,Prime Minister of the Federal Democratic Republic of Nepal,Comrade Prachanda,@cmprachanda
 MARSHALL ISLANDS,Mr. Kamal Thapa,Deputy Prime Minister and Minister for Foreign Affairs of the Federal Democratic Republic of Nepal,Kamal Thapa,@KTnepal

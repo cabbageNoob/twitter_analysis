@@ -4,8 +4,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-12 17:06:19
-@LastEditors: Da Chuang
-@LastEditTime: 2019-12-12 22:35:58
+@LastEditors  : Da Chuang
+@LastEditTime : 2020-01-03 18:51:23
 '''
 import os
 import sys
@@ -31,16 +31,16 @@ def get_clean_data():
             if row[1].value != None:
                 country = row[1].value
             clean_data.writelines('%s,%s,%s,%s,%s\n' % (country,
-                                                        str(row[2].value).replace(
+                                                        str(row[2].value).strip().replace(
                                                             ',', '.'),
-                                                        str(row[3].value).replace(
+                                                        str(row[3].value).strip().replace(
                                                             ',', '.'),
-                                                        str(row[4].value).replace(
+                                                        str(row[4].value).strip().replace(
                                                             ',', '.'),
-                                                        str(row[5].value).replace(',', '.')))
+                                                        str(row[5].value).strip().replace(',', '.')))
     clean_data.close()
 
 
 if __name__ == '__main__':
-    # get_clean_data()
-    pass
+    get_clean_data()
+    # pass
