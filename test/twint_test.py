@@ -4,7 +4,7 @@
 @Author: Da Chuang
 @Date: 2019-12-30 11:32:16
 @LastEditors  : Da Chuang
-@LastEditTime : 2019-12-30 11:52:03
+@LastEditTime : 2019-12-30 22:08:48
 '''
 
 import os
@@ -29,11 +29,14 @@ def get_twitter_realDonaldTrump():
     @return: csv file about realDonaldTrump's tweets
     '''
     c.Username = 'realDonaldTrump'
+    c.Search='china'
     c.Store_csv = True
-    c.Hide_output = True
-    c.Custom["tweet"] = ["id", "username", "date",
-                         "time", "tweet", "place", "geo", "replies_count", "retweets_count", "likes_count", "mentions","photos"]
-    c.Output = './data/tweet_related_realDonaldTrump/realDonaldTrump_test.csv'
+    # c.Hide_output = True
+    # c.Replies=True
+    c.Custom["tweet"] = ["id", 'conversation_id',"created_at", "username", "date",
+                         "time", "tweet", "place", "geo", "replies_count", "retweets_count", "likes_count", "mentions", "photos", \
+                             "hashtags","cashtags","retweet","quote_url","video"]
+    c.Output = './data/tweet_related_realDonaldTrump/china_test_2.csv'
     twint.run.Search(c)
 
 
@@ -51,8 +54,8 @@ def get_user_realDonaldTrump():
     twint.run.Lookup(c)
     
 def main():
-    # get_twitter_realDonaldTrump()
-    get_user_realDonaldTrump()
+    get_twitter_realDonaldTrump()
+    # get_user_realDonaldTrump()
 
 if __name__ == '__main__':
     main()
