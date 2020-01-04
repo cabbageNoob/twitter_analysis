@@ -3,8 +3,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 18:06:36
-@LastEditors: Da Chuang
-@LastEditTime: 2019-12-17 20:59:26
+@LastEditors  : Da Chuang
+@LastEditTime : 2020-01-04 18:26:28
 '''
 
 import os
@@ -111,8 +111,8 @@ def get_followings(name):
 
 if __name__ == '__main__':
     twitter_names = get_twitter_names()
-    # get_nodes(twitter_names)
-    get_relationships(twitter_names)
+    get_nodes(twitter_names)
+    # get_relationships(twitter_names)
     # print(twitter_names)
     # test1()
     # get_id('realDonaldTrump')
