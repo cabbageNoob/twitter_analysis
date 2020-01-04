@@ -20,7 +20,8 @@ def get_id_name(twitter_nodes):
     @Descripttion: get id_names lists
     @param {type} 
     @return: 
-    '''    
+    '''
+
     ids_names = {}
     for node in twitter_nodes:
         ids_names.setdefault(node['id'], node['label'])

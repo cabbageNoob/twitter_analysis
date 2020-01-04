@@ -111,8 +111,8 @@ def get_followings(name):
 
 if __name__ == '__main__':
     twitter_names = get_twitter_names()
-    get_nodes(twitter_names)
-    # get_relationships(twitter_names)
+    #get_nodes(twitter_names)
+    get_relationships(twitter_names)
     # print(twitter_names)
     # test1()
     # get_id('realDonaldTrump')
