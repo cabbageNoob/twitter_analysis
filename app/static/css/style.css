@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,img{ margin:0; padding:0; display:block; font-family:'微软雅黑';-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;-khtml-user-select: none;user-select: none;}
+body{ width:100%; max-width:1920px; margin:0 auto;}
+*{ margin:0; padding:0;}
+a{ cursor:pointer; text-decoration: none;}
+ul li{ list-style:none;}
+/*选择尚德开始*/
+.Choices{ width:1185px; float:left; height:219px; background:url(../images/background.jpg)  center; background-size:cover;}
+.Choices_text{ width:1200px; height:419px; margin:0 auto;}
+.Choices_head{ width:100%; float:left; height:45px; margin-top:50px; line-height:55px; letter-spacing:2px; font-weight:bold; text-align:center; font-size:48px; color:#FFF; display:block; position:relative;}
+.Choices_head:before,.Choices_head:after{content: ''; position: absolute;top: 30px;background: #FFF;width:265px;height: 2px;}
+.Choices_head:before{ left:175px;}
+.Choices_head:after{ right:175px;}
+
+.Choices_name{width:100%; float:left; height:30px; margin-top:50px; line-height:55px; letter-spacing:2px; font-weight:bold; text-align:center; font-size:30px; color:#FFF; display:block; position:relative;}
+.Choices_content{ width:1184px; height:294px; float:left; margin-left:3px;}
+.Choicesnext{ width:38px; height:37px; float:left; margin-left:1136px; margin-top:24px; cursor:pointer;}
+.Choices_banner{ width:1184px; height:399px; float:left; margin-top:39px; overflow: hidden;}
+.Choices_banner ul{ width: 12000px;  overflow: hidden;}
+.Choices_banner ul li{ width:1184px; height:399px; float:left;}
+.Choices_left{ width:394px; height:399px; float:left;}
+.Choices_right{ width:790px; height:399px; float:left; background-color: rgba(255,255,255,0.93)}
+.Choices_right h1{ width:790px; height:30px; line-height:30px; float:left; text-align:center; font-size:28px; margin-top:70px; color:#464646;}
+.Choices_right h2{ width:790px; height:30px; line-height:30px; float:left; text-align:center; font-size:28px; margin-top:10px; color:#464646;}
+.Choices_right p{ width:700px; height:70px; float:left; margin-left:70px; text-align:center; font-size:18px; color:#606060; margin-top:20px;}
+.Choicesbut{ width:197px; height:49px; float:left; border:1px solid #bfbfbf; background-color:rgba(255,255,255,0.7); text-align:center; line-height:49px; color:#606060; font-size:22px; margin-left:295px; margin-top:57px;}
+.Choicestel{ width:1184px; height:38px; text-align:center; line-height:38px; font-size:36px; float:left; font-family:"Arial"; overflow:hidden; color:#FFF; margin-top:100px;
+-webkit-user-select:none;/*谷歌 /Chrome*/
+-moz-user-select:none; /*火狐/Firefox*/
+-ms-user-select:none;    /*IE 10+*/
+user-select:none;}
+.Choicestel ul{ width:12000px; overflow:hidden;}
+.Choicestel ul li{ width:1184px; height:15px; float:left;}
+/*选择尚德结束*/

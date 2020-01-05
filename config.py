@@ -37,3 +37,24 @@ TWINT_NODES_FILE = os.path.join(
 # twint nodes json文件
 TWINT_EDGES_FILE = os.path.join(
     pwd_path, './twint_process/result/twint_edges.json')
+
+#flasky
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    @staticmethod
+    def init_app(app):
+        pass
+
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI ='mysql+pymysql://root@127.0.0.1:3306/twitter_analysis'
+
+config = {
+    'default': DevelopmentConfig
+}
