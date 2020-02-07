@@ -18,6 +18,7 @@
 
 {% block navbar %}
 <head>
+    <link href="{{ url_for('static',filename='css/main.css') }}" rel="stylesheet" type="text/css" />
     <style>
     .header-navigation {
 	  top: 0;
@@ -33,34 +34,31 @@
 	}
 </style>
 </head>
-<body background="{{ url_for('static',filename='images/xxx.jpg') }}" style="background-repeat:no-repeat;background-size:cover;">
-<div  class="header-navigation" role="navigation"><!--  style="background:#DCB879 width=1200px align:center"-->
-    <div class="container"> <!--style="background:#DCB879"-->
-        <div >
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" style="font-size:25px;" href="{{ url_for('main.index') }}">外国政要社交媒体言论分析</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+<body background="{{ url_for('static',filename='images/xxx.jpg') }}" style="background-repeat:no-repeat;background-size:cover;height: 950px;">
+    <div class="container">
+        <div class="container1">
+{#            <ul>外国政要社交媒体言论分析</ul>#}
+            <ul class="menu">
+                <li><a href="{{ url_for('main.index') }}" style="font-size:30px">外国政要社交媒体言论分析</a></li>
                 <li><a href="{{ url_for('main.index') }}">首页</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url_for('emotion_analyses.emotionanalysesindex') }}">情感分析</a></li>
-                <li><a href="{{ url_for('socialnet.socialnetindex') }}">社交网络分析</a></li>
-                <!-- {% if current_user.is_authenticated %}
+                <li class="active">
+                    <a href="#">社交网络分析</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('socialnet.socialnetindex') }}">cjh</a></li>
+                        <li><a href="#">wy</a></li>
+                        <li><a href="#">xr</a></li>
+                        <li><a href="#">ysx</a></li>
+                    </ul>
+                </li>
+                {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
                 {% else %}
                 <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-                {% endif %} -->
+                {% endif %}
             </ul>
         </div>
     </div>
-</div>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
 <script type="text/javascript">
@@ -69,7 +67,7 @@
         });
 </script>
 {% endblock %}
-<div style="height:10px">
+<div style="height:1000px">
 </div>
 {% block content %}
 <div class="container">

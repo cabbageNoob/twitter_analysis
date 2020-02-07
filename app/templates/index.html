@@ -1,6 +1,80 @@
 {% extends "base.html" %}
-{% block page_content %}
+{#{% import "bootstrap/wtf.html" as wtf %}#}
 
-<h1>Hello World!</h1>
+{% block title %}index{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/indexstyle')}}" type="text/css" />
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block content %}
+{% block page_content %}
+{% endblock %}
+    <h1>this is index page</h1>
+{#<div class="options">#}
+{#background="{{ url_for('static',filename='images/xxx.jpg') }}"#}
+{#    <div class="option active" style="background:{{ url_for('static',filename='img/indeximg/1.jpg') }};">#}
+{#      <div class="shadow"></div>#}
+{#      <div class="label">#}
+{#        <div class="icon"> <i class="fas fa-walking"></i> </div>#}
+{#        <div class="info">#}
+{#          <div class="main">这是标题</div>#}
+{#          <div class="sub">这是一段描述</div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="option" style="background:{{ url_for('static',filename='img/indeximg/2.jpg') }};">#}
+{#      <div class="shadow"></div>#}
+{#      <div class="label">#}
+{#        <div class="icon"> <i class="fas fa-snowflake"></i> </div>#}
+{#        <div class="info">#}
+{#          <div class="main">这是标题</div>#}
+{#          <div class="sub">这是一段描述</div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="option" style="background:{{ url_for('static',filename='img/indeximg/3.jpg') }};">#}
+{#      <div class="shadow"></div>#}
+{#      <div class="label">#}
+{#        <div class="icon"> <i class="fas fa-tree"></i> </div>#}
+{#        <div class="info">#}
+{#          <div class="main">这是标题</div>#}
+{#          <div class="sub">这是一段描述</div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="option" style="background:{{ url_for('static',filename='img/indeximg/4.jpg') }};">#}
+{#      <div class="shadow"></div>#}
+{#      <div class="label">#}
+{#        <div class="icon"> <i class="fas fa-tint"></i> </div>#}
+{#        <div class="info">#}
+{#          <div class="main">这是标题</div>#}
+{#          <div class="sub">这是一段描述</div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="option" style="background:{{ url_for('static',filename='img/indeximg/5.jpg') }};">#}
+{#      <div class="shadow"></div>#}
+{#      <div class="label">#}
+{#        <div class="icon"> <i class="fas fa-sun"></i> </div>#}
+{#        <div class="info">#}
+{#          <div class="main">这是标题</div>#}
+{#          <div class="sub">这是一段描述</div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{#<script type="text/javascript">#}
+{#$(".option").click(function () {#}
+{#	$(".option").removeClass("active");#}
+{#	$(this).addClass("active");#}
+{#});#}
+{#</script>#}
 
 {% endblock %}
