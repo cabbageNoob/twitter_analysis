@@ -4,8 +4,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 09:52:57
-@LastEditors  : Da Chuang
-@LastEditTime : 2020-01-05 07:48:11
+@LastEditors: Da Chuang
+@LastEditTime: 2020-02-29 21:40:18
 '''
 import os
 import sys
@@ -35,7 +35,7 @@ def get_twitter_names():
     @return: 
     '''
     # pandas读入
-    data = pd.read_csv(config.TWITTER_NAMES_FILE)
+    data = pd.read_csv(config.TWITTER_NAMES_FILE, error_bad_lines = False)
     names = list(np.array(data['twitter@']))
     countries = list(np.array(data['country']))
     return names, countries

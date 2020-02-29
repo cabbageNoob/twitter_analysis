@@ -54,11 +54,11 @@ FRANCE,Monsieur Jean-Marc Ayrault,Ministre des affaires étrangères et du déve
 GABON,Monsieur Ali Bongo Ondimba,Président de la République gabonaise,Ali Bongo Ondimba,@PresidentABO
 GABON,Giorgi Kvirikashvili,Prime Minister of Georgia,Giorgi Kvirikashvili,@KvirikashviliGi
 GABON,Mikheil Janelidze,Minister for Foreign Affairs of Georgia,Mikheil Janelidze,@JanelidzeMkh
-GHANA,John Dramani Mahama,President of the Republic of Ghana,John Dramani Mahama,@JDMahama
+GHANA,John Dramani Mahama,President of the Republic of Ghana,John Dramani Mahama,@JDMahama ‏
 GHANA,Alexis Tsipras,Prime Minister of the Hellenic Republic,Alexis Tsipras,@tsipras_eu
 GHANA,Alexis Tsipras,Prime Minister of the Hellenic Republic,Αλέξης Τσίπρας - Alexis Tsipras,@atsipras
 GUATEMALA,Jimmy Morales,Presidente de la República de Guatemala,Jimmy Morales,@jimmymoralesgt
-HONDURAS,Juan Orlando Hernández Alvarado,Presidente de la República de Honduras,Juan Orlando H.,@JuanOrlandoH
+HONDURAS,Juan Orlando Hernández Alvarado,Presidente de la República de Honduras,None,Juan Orlando H.,@JuanOrlandoH
 INDIA,Pranab Mukherjee,President of the Republic of India,Pranab Mukherjee,@CitiznMukherjee
 INDIA,Narendra Modi,Prime Minister of the Republic of India,Narendra Modi,@narendramodi
 INDIA,Sushma Swaraj,Minister for External Affairs of the Republic of India,Sushma Swaraj,@SushmaSwaraj
@@ -122,3 +122,61 @@ SLOVAKIA,Mr. Andrej Kiska,President of the Slovak Republic,Andrej Kiska,@Andrej_
 SLOVAKIA,Mr. Miroslav Lajčák,Minister for Foreign and European Affairs of the Slovak Republic,Miroslav Lajčák,@MiroslavLajcak
 SLOVENIA,Mr. Borut Pahor,President of the Republic of Slovenia,Borut Pahor,@BorutPahor
 SLOVENIA,Mr. Miro Cerar,Prime Minister of the Republic of Slovenia,dr. Miro Cerar,@MiroCerar
+SLOVENIA,Mr. Omar Abdirashid Ali Sharmarke,Prime Minister of the Federal Republic of Somalia,Abdirahman Dhuxul,@AbdirahmanDhux3
+SLOVENIA,Ms. Maite Nkoana-Mashabane,Minister for International Relations and Cooperation of the Republic of South Africa,Maite Nkoana Mashabane,@maite_nkoana
+SOUTH SUDAN,Mr. Salva Kiir,President of the Republic of South Sudan,President Salva Kiir,@PresSalva
+SPAIN,Mariano Rajoy Brey,Presidente del Gobierno de España,Mariano Rajoy Brey,@marianorajoy
+SPAIN,José Manuel García Margallo,Ministro de Asuntos Exteriores y de Cooperación de España,JM García-Margallo,@MargalloJm
+SRI LANKA,Mr. Maithripala Sirisena,President of the Democratic Socialist Republic of Sri Lanka,Maithripala Sirisena,@MaithripalaS
+SRI LANKA,Mr. Mangala Samaraweera,Minister for Foreign Affairs of the Democratic Socialist Republic of Sri Lanka,Mangala Samaraweera,@MangalaLK
+SURINAME,Mr. Desiré Delano Bouterse,President of the Republic of Suriname,Desiré Delano Bouterse,@DelanoDesire
+SWAZILAND,King Mswati III,Head of State of the Kingdom of Swaziland,Mswati III,@KingMswatiIII
+SWEDEN,King Carl XVI Gustaf,None,King Carl XVI Gustaf,@KingCarlXVIGust
+SWEDEN,Mr. Stefan Löfven,Prime Minister of Sweden,Stefan Löfven,@SStatsministern
+SWEDEN,Ms. Margot Wallström,Minister for Foreign Affairs of Sweden,Margot Wallström,@margotwallstrom
+SYRIAN ARAB REPUBLIC,Dr. Bashar Al-Assad,President of the Syrian Arab Republic,Erich Honecker,@DrBasharAlAssad
+TAJIKISTAN,Mr. Emomali Rahmon,President of the Republic of Tajikistan,Emomali Rahmon,@EmomaliRahmon
+THE FORMER YUGOSLAV REPUBLIC OF MACEDONIA,Mr. Gjorge Ivanov,President of the former Yugoslav Republic of Macedonia,GjorgeIvanov,@GjorgeIvanov
+THE FORMER YUGOSLAV REPUBLIC OF MACEDONIA,Mr. Nikola Poposki,Deputy Prime Minister and Minister for Foreign Affairs of the former Yugoslav Republic of Macedonia,Nikola Poposki,@NikolaPoposki
+TIMOR-LESTE,Mr. Taur Matan Ruak,President of the Democratic Republic of Timor-Leste,Taur Matan Ruak. Primeiro-Ministro de Timor-Leste,@TaurDe
+TIMOR-LESTE,Mr. Rui Maria de Araújo,Prime Minister of the Democratic Republic of Timor- Leste,Dr Rui Maria de Araújo,@DrRuiMariadeAr1
+TONGA,King Tupou VI,King of the Kingdom of Tonga,King Tupou VI,@KingTupouVI
+TONGA,Mr. Keith Rowley. MP,Prime Minister of the Republic of Trinidad and Tobago,Keith Rowley,@DrKeithRowley
+TONGA,Mr. Denis Moses,Minister for Foreign and CARICOM Affairs of the Republic of Trinidad and Tobago,Moses Denis,@MosesDenis11
+TONGA,Monsieur Habib Essid,Chef du gouvernement de la République tunisienne,حبيب الصيد,@Habib_Essid
+TURKEY,Mr. Recep Tayyip Erdoğan,President of the Republic of Turkey,Recep Tayyip Erdoğan,@RTErdogan
+TURKEY,Mr. Bınalı Yildirim,Prime Minister of the Republic of Turkey,Binali Yıldırım,@BY
+TURKEY,Mr. Mevlüt Çavuşoğlu,Minister for Foreign Affairs of the Republic of Turkey,Mevlüt Çavuşoğlu,@MevlutCavusoglu
+TURKMENISTAN,Mr. Gurbanguly Berdimuhamedov,President of Turkmenistan,Gurbanguly Berdimuhamedov,@GBerdimuhamedov
+TUVALU,Sir Iakoba Italeli,Governor-General of Tuvalu,Sir Iakoba Italeli,@IakobaItaleli
+TUVALU,Mr. Taukelina Finikaso,Minister for Foreign Affairs. Trade. Tourism. Enironment and Labour of Tuvalu,Taukelina Finikaso,@TFinikaso
+UGANDA,Mr. Yoweri Kaguta Museveni,President of the Republic of Uganda,Yoweri K Museveni,@KagutaMuseveni
+UGANDA,Mr. Ruhakana Rugunda,Prime Minister of the Republic of Uganda,Dr. Ruhakana Rugunda,@RuhakanaR
+UGANDA,Mr. Sam Kutesa,Minister for Foreign Affairs of the Republic of Uganda,Sam Kutesa,@samkutesa
+UKRAINE,Mr. Petro Poroshenko,President of Ukraine,Петро Порошенко,@poroshenko
+UKRAINE,Mr. Volodymyr Groysman,Prime Minister of Ukraine,Volodymyr Groysman,@VGroysman
+UKRAINE,Mr. Pavlo Klimkin,Minister for Foreign Affairs of Ukraine,Pavlo Klimkin,@PavloKlimkin
+UNITED ARAB EMIRATES,Sheikh Khalifa Bin Zayed Al Nahyan,President of the United Arab Emirates,Sheikh Zayed Bin Sultan Bin Khalifa Al Nahyan,@ZayedSultan_
+UNITED ARAB EMIRATES,Sheikh Mohammed Bin Rashid Al Maktoum,Vice-President. Prime Minister and Minister of Defence of the United Arab Emirates. Ruler of Dubai,Sheikh Mohammed Bin Rashid Al Maktoum,@ZayedSultan_
+UNITED KINGDOM,Queen Elizabeth II,None,Queen Elizabeth II,@ElizabethUKRPG
+UNITED KINGDOM,Mrs. Theresa May.,Prime Minister. First Lord of the Treasury and Minister for the Civil Service of the United Kingdom of Great Britain and Northern Ireland,Theresa May,@theresa_may
+UNITED KINGDOM,Mr. Boris Johnson.,Secretary of State for Foreign and Commonwealth Affairs of the United Kingdom of Great Britain and Northern Ireland,Boris Johnson,@BorisJohnson
+UNITED REPUBLIC OF TANZANI,Mr. John Pombe Joseph Magufuli,President of the United Republic of Tanzania,Team JOHN JOSEPH POMBE MAGUFULI,@TeamPombe
+UNITED REPUBLIC OF TANZANI,Mr. Majaliwa Kassim Majaliwa,Prime Minister of the United Republic of Tanzania,Majaliwa Kassim,@majaliwa_kassim
+UNITED STATES OF AMERICA,Barack Obama,President of the United States of America,Barack Obama,@BarackObama
+UNITED STATES OF AMERICA,John F.Kerry,Secretary of State of the United States of America,John F. Kerry.,@jxhnk
+URUGUAY,Tabaré Vázquez,Presidente de la República Oriental del Uruguay,Tabare Vazquez,@TabareVazquez
+URUGUAY,Mr. Shavkat Mirziyoyev,Prime Minister of the Republic of Uzbekistan,Shavkat Mirziyoyev's Press-service,@president_uz
+VANUATU,Mr. Baldwin Lonsdale,President of the Republic of Vanuatu,Baldwin Lonsdale,@BaldwinLonsdale
+VENEZUELA (BOLIVARIAN REPUBLIC OF),Nicolás Maduro Moros,Presidente de la República Bolivariana de Venezuela,nicolas maduro moros,@nicolamaduro
+VENEZUELA (BOLIVARIAN REPUBLIC OF),Delcy Eloína Rodríguez Gómez,Ministra del Poder Popular para Relaciones Exteriores de la República Bolivariana de Venezuela,Delcy Rodríguez,@DrodriguezVen
+VIET NAM,Mr. Tran Dai Quang,President of the Socialist Republic of Viet Nam,Tran Dai Quang,@trandaiquang
+VIET NAM,Mr. Nguyen Xuan Phuc,Prime Minister of the Socialist Republic of Viet Nam,Nguyễn Xuân Phúc,@Plaid_Phuc
+VIET NAM,Mr. Pham Binh Minh,Deputy Prime Minister and Minister for Foreign Affairs of the Socialist Republic of Viet Nam,PhamBinhMinh,@FMPhamBinhMinh
+ZAMBIA,Mr. Edgar Chagwa Lungu,President of the Republic of Zambia,Edgar Chagwa Lungu,@EdgarCLungu
+ZAMBIA,Mr. Harry Kalaba. MP,Minister for Foreign Affairs of the Republic of Zambia,Harry Kalaba,@HarryKalaba
+ZIMBABWE,Mr. Robert G. Mugabe,President of the Republic of Zimbabwe,Robert G Mugabe,@Robert_Mugabe93
+ZIMBABWE,Mr. Morgan Richard Tsvangirai,Prime Minister of Zimbabwe,Defending Richard Morgan Tsvangirai Legacy,@DefendingLegacy
+STATE OF PALESTINE,Mr. Mahmoud Abbas,President of the State of Palestine,Mahmoud Abbas (SANUSI),@ma_sanusi
+STATE OF PALESTINE,Mr. Rami Hamdallah,Prime Minister of the State of Palestine,Rami Hamdallah,@RamiHamdalla
+STATE OF PALESTINE,Mr. Riad Malki,Minister for Foreign Affairs of the State of Palestine,Riad AlMalki,@RiadMalki
