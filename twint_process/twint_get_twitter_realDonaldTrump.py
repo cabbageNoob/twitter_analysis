@@ -31,9 +31,13 @@ def get_twitter_realDonaldTrump():
     '''
     c.Username = 'realDonaldTrump'
     c.Store_csv = True
+    # c.Since = '2016-01-20'
+    c.Since = '2019-01-01'
+    c.Until = '2019-01-18'
     c.Custom["tweet"] = ["id", "username", "date",
                          "time", "tweet", "place","geo", "replies_count", "retweets_count", "likes_count"]
-    c.Output = './data/tweet_related_realDonaldTrump/realDonaldTrump_test.csv'
+    c.Output = '../data/tweet_related_realDonaldTrump/realDonaldTrump_test_wy.csv'
+
     twint.run.Search(c)
 
 def main():
