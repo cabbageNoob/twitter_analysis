@@ -3,14 +3,100 @@
  * @version: 
  * @Author: Da Chuang
  * @Date: 2020-01-05 16:15:39
- * @LastEditors  : Da Chuang
- * @LastEditTime : 2020-01-05 17:00:53
+ * @LastEditors: Da Chuang
+ * @LastEditTime: 2020-03-16 22:00:07
  -->
-{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}外国政要社交网络分析{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}twitter analysis{% endblock %}</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='fontawesome-free-5.9.0-web/css/all.min.css')}}">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.min.css')}}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <!-- <link href="{{ url_for('static',filename='css/style.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style_new.css')}}" rel="stylesheet"> -->
 
-{% block head %}
+    <link href="{{ url_for('static',filename='css/main.css') }}" rel="stylesheet" type="text/css" />
+
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg  scrolling-navbar primary-color navbar-dark"> -->
+    {% block navbar %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        {% endblock %}
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="{{url_for('main.index')}}" target="_blank">
+                <strong>政圈</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('main.index')}}">项目简介
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('emotion_analyses.emotionanalysesindex')}}">情感分析</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">社交网络分析</a>
+                        <ul class="submenu">
+                            <li><a href="{{ url_for('socialnet.socialnetindex') }}">cjh</a></li>
+                            <li><a href="#">wy</a></li>
+                            <li><a href="#">xr</a></li>
+                            <li><a href="#">ysx</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
+
+
+
+    
+
+
+
+<!-- {% block head %}
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
@@ -86,4 +172,4 @@
 {% block scripts %}
 {{ super() }}
 {% endblock %}
-<!--position: fixed; z-index: 9999;-->
+position: fixed; z-index: 9999; -->
