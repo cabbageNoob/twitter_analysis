@@ -3,8 +3,8 @@
 @version: 
 @Author: Da Chuang
 @Date: 2019-12-10 18:06:36
-@LastEditors  : Da Chuang
-@LastEditTime : 2020-01-04 22:43:58
+@LastEditors: Da Chuang
+@LastEditTime: 2020-03-16 15:21:21
 '''
 
 import os
@@ -41,8 +41,9 @@ def get_twitter_names():
     @return: 
     '''
     # pandas读入
-    data = pd.read_csv(config.TWITTER_NAMES_FILE)
+    data = pd.read_csv(config.TWITTER_NAMES_FILE, error_bad_lines=False)
     names = list(np.array(data['twitter@']))
+    print(names)
     names = [name[1:] for name in names]
     return names
 
