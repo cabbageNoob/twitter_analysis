@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}最短路径{% endblock %}
+
+{% block head %}
+{{ super() }}
+<script src="{{url_for('static',filename='js/vis-network.min.js')}}" charset="utf-8"></script>
+<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% block page_content %}
+
+{% endblock %}
+{{ wtf.quick_form(form) }}
+<body>
+{{ path }}
+
+<div id="VIS_draw" style="height: 1000px"></div>
+
+<script type="text/javascript">
+    var network;
+    var allNodes;
+    var nodes, edges;
+    var highlightActive = false;
+    data = JSON.parse('{{data|safe }}')
+    if (data) {
+        nodes = data.nodes
+        edges = data.edges
+    }
+    var nodesDataset = new vis.DataSet(nodes)
+    console.log('----nodesDataset', nodesDataset)
+    var edgesDataset = new vis.DataSet(edges)
+    var container = document.getElementById("VIS_draw");
+    var data = {
+        nodes: nodesDataset,
+        edges: edgesDataset
+    };
+    var options = {
+        nodes: {
+            shape: 'circularImage',
+            size: 20,
+            color: 'red',
+            font: {
+                size: 15
+            }
+        },
+        edges: {
+            font: {
+                size: 10,
+                align: 'center'
+            },
+            color: {
+                inherit: 'from'
+            },
+            arrows: {
+                to: {
+                    enabled: true,
+                    scaleFactor: 1.2
+                }
+            },
+            smooth: {
+                enabled: true
+            }
+        },
+        physics: {
+            stabilization: false,
+            barnesHut: {
+                gravitationalConstant: -13000,
+                springConstant: 0.05,
+                springLength: 50
+            }
+        },
+        interaction: {
+            tooltipDelay: 200,
+            // hideEdgesOnDrag: true,
+            hideEdgesOnZoom: true,
+        }
+    };
+
+    network = new vis.Network(container, data, options);
+    // get a JSON object
+    allNodes = nodesDataset.get({
+        returnType: "Object"
+    });
+    allEdges = edgesDataset.get({
+        returnType: "Object"
+    })
+
+    network.on("click", neighbourhoodHighlight);
+
+    function neighbourhoodHighlight(params) {
+        // if something is selected:
+        if (params.nodes.length > 0) {
+            highlightActive = true;
+            var i, j;
+            var selectedNode = params.nodes[0];
+            var degrees = 1;
+
+            // mark all nodes as hard to read.
+            for (var nodeId in allNodes) {
+                allNodes[nodeId].color = 'rgba(200,200,200,0.5)';
+                if (allNodes[nodeId].hiddenLabel === undefined) {
+                    allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+                    allNodes[nodeId].label = undefined;
+                }
+                if (allNodes[nodeId].hideenImage === undefined) {
+                    allNodes[nodeId].hideenImage = allNodes[nodeId].image;
+                }
+                allNodes[nodeId].image = "{{ url_for('static', filename='img/newmiss.jfif') }}";
+                allNodes[nodeId].size = 20;
+            }
+            for (var edgeId in allEdges) {
+                allEdges[edgeId].color = {
+                    color: undefined
+                }
+            }
+            var connectedNodes = network.getConnectedNodes(selectedNode);
+            var connectedNodes_from = network.getConnectedNodes(selectedNode, direction = 'from');
+            var connectedEdges = network.getConnectedEdges(selectedNode);
+            var connectedEdges_from = [];
+            // get the from edges of the selected node
+            for (i = 0; i < connectedEdges.length; i++) {
+                two_nodes = network.getConnectedNodes(connectedEdges[i]);
+                if (two_nodes[1] == selectedNode) {
+                    connectedEdges_from.push(connectedEdges[i])
+                }
+            }
+
+            var allConnectedNodes = [];
+
+            // get the second degree nodes
+            for (i = 1; i < degrees; i++) {
+                for (j = 0; j < connectedNodes.length; j++) {
+                    allConnectedNodes = allConnectedNodes.concat(network.getConnectedNodes(connectedNodes[j]));
+                }
+            }
+
+            // all second degree nodes get a different color and their label back
+            for (i = 0; i < allConnectedNodes.length; i++) {
+                allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
+                if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+                    allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
+                    allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+                }
+            }
+
+            // all first degree nodes get their own color and their label back
+            for (i = 0; i < connectedNodes.length; i++) {
+                // allNodes[connectedNodes[i]].color = 'red';
+                allNodes[connectedNodes[i]].image = allNodes[connectedNodes[i]].hideenImage;
+                allNodes[connectedNodes[i]].size = 30;
+                if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+                    allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
+                    allNodes[connectedNodes[i]].hiddenLabel = undefined;
+                }
+            }
+            // the edge to the selected node get light blue color
+            for (i = 0; i < connectedEdges_from.length; i++) {
+                allEdges[connectedEdges_from[i]].color = {
+                    color: 'blue'
+                };
+            }
+            // the main node gets its own color and its label back.
+            allNodes[selectedNode].color = 'red';
+            allNodes[selectedNode].image = allNodes[selectedNode].hideenImage;
+            allNodes[selectedNode].size = 30;
+            if (allNodes[selectedNode].hiddenLabel !== undefined) {
+                allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+                allNodes[selectedNode].hiddenLabel = undefined;
+            }
+        } else if (highlightActive === true) {
+            // reset all nodes
+            for (var nodeId in allNodes) {
+                allNodes[nodeId].color = 'red';
+                allNodes[nodeId].image = allNodes[nodeId].hideenImage;
+                allNodes[nodeId].size = 20;
+                if (allNodes[nodeId].hiddenLabel !== undefined) {
+                    allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+                    allNodes[nodeId].hiddenLabel = undefined;
+                }
+            }
+            // reset all edges
+            for (var edgeId in allEdges) {
+                allEdges[edgeId].color = {
+                    color: undefined
+                };
+            }
+            highlightActive = false
+        }
+
+        // transform the object into an array
+        var updateArray = [];
+        for (nodeId in allNodes) {
+            if (allNodes.hasOwnProperty(nodeId)) {
+                updateArray.push(allNodes[nodeId]);
+            }
+        }
+        nodesDataset.update(updateArray);
+        // update the edges
+        updateArray = []
+        for (edgeId in allEdges) {
+            if (allEdges.hasOwnProperty(edgeId)) {
+                updateArray.push(allEdges[edgeId]);
+            }
+        }
+        console.log(updateArray)
+        edgesDataset.update(updateArray);
+    }
+</script>
+</body>
+{% endblock %}
+
+
