@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}单词统计{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/echarts-wordcloud.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>单词统计</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">词频统计</li>
+        <li class="active">单词统计</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 500px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 170px;margin: 0 auto;color: #214373;margin-top: 20px">
+        <p>本页将爬取到的所有推文进行分词和清洗，共筛选出<b  style="font-size:25px">16964</b>种单词或特殊符号共<b  style="font-size:25px">172243</b>个。</p>
+        <p>其中单词<b  style="font-size:25px">great</b>出现最多次共<b  style="font-size:25px">2630</b>次，其次是<b>people</b>出现<b>1224</b>次，
+            <b>get</b>出现<b>1146</b>次，<b>country</b>出现<b>1098</b>次。</p>
+</div>
+    </div>
+<script type="text/javascript">
+    //初始化ehcharts实例
+    var myChart=echarts.init(document.getElementById("box"));
+
+    var words=new Array();
+    var codes=new Array();
+
+    var count=0;
+    {% for i in word %}
+        words[count]="{{ i }}";
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in num %}
+        var j = words[count];
+        codes[count]={name:j , value:{{ i }} };
+        count++;
+        {% endfor %}
+
+var JosnList = codes;
+        var optionFour = {
+            tooltip: {
+                show: true
+            },
+            toolbox:{
+            show:true,
+            feature:{
+                saveAsImage:{
+                    show:true,
+                    excludeComponents :['toolbox'],
+                    pixelRatio: 2
+                }
+            }
+        },
+            series: [{
+                name: '特朗普推文词频',
+                type: 'wordCloud',
+                sizeRange: [15, 80],//文字范围
+                //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
+                rotationRange: [-45, 90],
+                rotationStep: 45,
+                textRotation: [0, 45, 90, -45],
+                //形状
+                shape: 'circle',
+                textStyle: {
+                    normal: {
+                        color: function() {//文字颜色的随机色
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 250),
+                                Math.round(Math.random() * 250),
+                                Math.round(Math.random() * 250)
+                            ].join(',') + ')';
+                        }
+                    },
+                    //悬停上去的颜色设置
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                data: JosnList
+            }]
+        };
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(optionFour);
+
+</script>
+{% endblock %}

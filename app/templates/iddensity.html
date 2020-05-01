@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}提及统计{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/echarts-wordcloud.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>提及统计</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">词频统计</li>
+        <li class="active">提及统计</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 500px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 170px;margin: 0 auto;color: #214373;margin-top: 20px">
+         <p>下方词云图展示了特朗普推文提及其他账号的情况，特朗普共提及了<b  style="font-size:25px">756</b>个不同的用户共<b  style="font-size:25px">2880</b>次。</p>
+        <p>其中<b  style="font-size:25px">foxnews</b>，即福克斯新闻被提及最多，共<b  style="font-size:25px">289</b>次，其次是<b>foxandfriends</b>提及<b>228</b>次。</p>
+    <p>特朗普是共和党，而且作为新闻媒体，由于福克斯新闻网缔造者坚守右翼立场，可以理解为何福克斯被点名多次。而CNN虽然也被提到多次，但一般都伴随“FAKE NEWS”出现，说明特朗普对cnn的评价并不高。</p>
+</div>
+    </div>
+<script type="text/javascript">
+    //初始化ehcharts实例
+    var myChart=echarts.init(document.getElementById("box"));
+
+    var words2=new Array();
+    var codes2=new Array();
+    var count=0;
+    {% for i in word2 %}
+        words2[count]="{{ i }}";
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in num2 %}
+        var j = words2[count];
+        codes2[count]={name:j , value:{{ i }} };
+        count++;
+        {% endfor %}
+
+var JosnLists = codes2;
+        var optionFour2 = {
+            tooltip: {
+                show: true
+            },
+            toolbox:{
+            show:true,
+            feature:{
+                saveAsImage:{
+                    show:true,
+                    excludeComponents :['toolbox'],
+                    pixelRatio: 2
+                }
+            }
+        },
+            series: [{
+                name: '特朗普推文提及',
+                type: 'wordCloud',
+                sizeRange: [10, 75],//文字范围
+                //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
+                rotationRange: [-45, 90],
+                rotationStep: 45,
+                textRotation: [0, 45, 90, -45],
+                //形状
+                shape: 'circle',
+                textStyle: {
+                    normal: {
+                        color: function() {//文字颜色的随机色
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 250),
+                                Math.round(Math.random() * 250),
+                                Math.round(Math.random() * 250)
+                            ].join(',') + ')';
+                        }
+                    },
+                    //悬停上去的颜色设置
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                data: JosnLists
+            }]
+        };
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(optionFour2);
+
+</script>
+{% endblock %}

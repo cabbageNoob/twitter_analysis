@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}与点赞、评论、转发数的关系{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/echarts-wordcloud.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>与点赞、评论、转发数的关系</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">推文分析</li>
+        <li class="active">与点赞、评论、转发数的关系</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 500px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 290px;margin: 0 auto;color: #214373;margin-top: 30px">
+    <p>同时观察三项数据，数值由大到小分别为点赞数、转发数、评论数，可见在看到一篇推文后愿意发表见解的为少数人。</p>
+    <p>单独观察<b>点赞数</b>，点赞最多为<b  style="font-size:25px">846455</b>的一条推文发布于2019年8月3日，内容为：
+        A$AP Rocky released from prison and on his way home to the United States from Sweden. It was a Rocky Week, get home ASAP A$AP!</p>
+        <p>单独观察<b>评论数</b>，评论最多为<b  style="font-size:25px">173429</b>
+            的一条推文发布于2019年11月27日，内容为美国国旗图片。伊拉克巴格达国际机场3日遭火箭弹袭击，一名伊朗伊斯兰革命卫队高级将领身亡。美国国防部随后声明“认领”袭击行动，而后特朗普只在
+        Twitter上发了一张国旗，表示暗杀得手。</p>
+        <p>单独观察<b>转发数</b>，转发最多为<b  style="font-size:25px">305864</b>
+            的一条推文发布于2017年7月2日，内容为一条关于特朗普不满意CNN的视频。今年3月12日，特朗普在CNN记者提问时用“假新闻，下一个”来表达不满。</p>
+        <p>可以大致推断网友对特朗普在推特上发布政治相关内容不感兴趣，反而会与含有娱乐或调侃性质的推文互动。</p>
+</div>
+    </div>
+<script type="text/javascript">
+ //初始化ehcharts实例
+    var myChart=echarts.init(document.getElementById("box"));
+
+    var likes_counts=new Array();
+    var replies_counts=new Array();
+    var retweets_counts=new Array();
+    var dates=new Array();
+    var tweets=new Array();
+
+    var count=0;
+    {% for i in tweet %}
+        tweets[count]="{{ i }}";
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in replies_count %}
+{#        replies_counts[count]={{ i }};#}
+        var j = tweets[count];
+        replies_counts[count]={value:{{ i }} , tweet:j};
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in likes_count %}
+{#        likes_counts[count]={{ i }};#}
+        var j = tweets[count];
+        likes_counts[count]={value:{{ i }} , tweet:j};
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in retweets_count %}
+{#        retweets_counts[count]={{ i }};#}
+        var j = tweets[count];
+        retweets_counts[count]={value:{{ i }} , tweet:j};
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in date %}
+        dates[count]="{{ i }}";
+        count++;
+        {% endfor %}
+
+{#    var count=0;#}
+{#    {% for i in tweet %}#}
+{#        var j = likes_counts[count];#}
+{#        jsdate[count]={value:j , tweet:"{{ i }}" };#}
+{#        count++;#}
+{#        {% endfor %}#}
+
+console.log(tweets)
+
+    //指定图表的配置项和数据
+    var option={
+        tooltip: { //跟随鼠标显示数值
+        trigger: 'axis',
+            formatter: function (params, ticket, callback) {
+          var htmlStr = '';
+          for(var i=0;i<params.length;i++){
+        	var param = params[i];
+        	var xName = param.name;//x轴的名称
+        	var seriesName = param.seriesName;//图例名称
+        	var value = param.value;//y轴值
+        	var color = param.color;//图例颜色
+
+        	if(i===0){
+        	  htmlStr += xName + '<br/>';//x轴的名称
+
+        	}
+        	htmlStr +='<div>';
+        	//为了保证和原来的效果一样，这里自己实现了一个点的效果
+        	htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:'+color+';"></span>';
+
+        	//圆点后面显示的文本
+        	htmlStr += seriesName + '：' + value ;
+
+        	htmlStr += '</div>';
+          }
+          htmlStr += '推文内容：' + params[0].data.tweet;
+          return htmlStr;
+         },
+            extraCssText:'width:250px; white-space:pre-wrap',
+            position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+        //标题
+        title:{
+          text:'特朗普推文点赞、评论、转发数',
+          x:'center'
+        },
+        grid:{
+                    x:100,
+                    y:50,
+                    x2:50,
+                    y2:100,
+                },
+        //工具箱
+        //保存图片
+        toolbox:{
+            show:true,
+            feature:{
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {show:true},
+                saveAsImage:{
+                    backgroundColor:'#fff',
+                    show:true,
+                    excludeComponents :['toolbox'],
+                    pixelRatio: 3
+                }
+            }
+        },
+        //图例-每一条数据的名字叫销量
+        legend:{
+            data:['点赞数','评论数','转发数'],
+            x:'center',
+            padding:[0,0,100,130],
+            top:'5%',
+{#            textStyle:{#}
+{#                            color: '#fff'//字体颜色#}
+{#                        },#}
+        },
+        animation : false,
+        //x轴
+        xAxis:{
+            type: 'category',
+            boundaryGap: false,
+            data:dates,
+            axisLabel: {
+{#                textStyle: {#}
+{#                                color: '#fff'#}
+{#                            },#}
+
+                rotate:40
+        }
+        },
+
+        //y轴没有显式设置，根据值自动生成y轴
+        yAxis: {
+{#            axisLabel: {#}
+{#                textStyle: {#}
+{#                    color: '#fff'#}
+{#                },#}
+{#            },#}
+
+        },
+        dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 10
+    }, {
+        start: 0,
+        end: 10,
+        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        handleSize: '80%',
+        handleStyle: {
+            color: '#fff',
+            shadowBlur: 3,
+            shadowColor: 'rgba(0, 0, 0, 0.6)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 2
+        }
+    }],
+        //数据-data是最终要显示的数据
+        series:[{
+            name:'点赞数',
+            type:'line',
+            itemStyle: {
+                normal: {
+                    color:'#6495ED', //改变折线点颜色
+                    lineStyle: {
+                        width: 0.7,// 0.1的线条是非常细的了
+                        color:'#6495ED' //改变折线颜色
+                    }
+                },
+            },
+            data:likes_counts
+        },
+        {
+            name:'评论数',
+            type:'line',
+            itemStyle: {
+                normal: {
+                    color:'#2E8B57', //改变折线点颜色
+                    lineStyle: {
+                        width: 0.7,// 0.1的线条是非常细的了
+                        color:'#2E8B57' //改变折线颜色
+                    }
+                },
+            },
+            data:replies_counts
+        },
+            {
+            name:'转发数',
+            type:'line',
+            itemStyle: {
+                normal: {
+                    color:'#DC143C', //改变折线点颜色
+                    lineStyle: {
+                        width: 0.7,// 0.1的线条是非常细的了
+                        color:'#DC143C' //改变折线颜色
+                    }
+                },
+            },
+            data:retweets_counts
+        },
+        ]
+    };
+    //使用刚刚指定的配置项和数据项显示图表
+    myChart.setOption(option);
+
+</script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}与点赞、评论、转发数的关系{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/echarts-wordcloud.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>与点赞、评论、转发数的关系</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">推文分析</li>
+        <li class="active">与点赞、评论、转发数的关系</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 500px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 170px;margin: 0 auto;color: #214373;margin-top: 20px">
+        <p>观察这情感偏向“积极”、“消极”、“无情感”的三类推文分别所对应的点赞数、转发数和评论数，求其平均值。</p>
+        <p>带有<b  style="font-size:25px">消极</b>情感的推文获得的点赞、转发和评论数最多。</p>
+        <p>用户更加感兴趣负面消息，符合“负面偏好”原理。</p>
+</div>
+    </div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('box'));
+option = {
+    legend: {
+        top:'5%',
+    },
+    tooltip: {},
+    title:{
+          text:'各类情感所含推文点赞、转发、评论数平均值',
+{#          subtext:'不包含转推',#}
+          x:'center',
+        },
+    dataset: {
+        source: [
+            ['product', '点赞数平均值', '转发数平均值', '评论数平均值'],
+            ['积极情感', 81363, 17585, 14881],
+            ['消极情感', 87188, 19850, 20096],
+            ['无情感', 83829, 19468, 17457],
+        ]
+    },
+    xAxis: {type: 'category'},
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [
+        {type: 'bar',
+            itemStyle: {
+        normal: {
+            label: {
+                show: true, //开启显示
+                position: 'top', //在上方显示
+                textStyle: { //数值样式
+                    color: 'black',
+                    fontSize: 16
+                }
+            }
+        }
+    }
+    },
+        {type: 'bar',
+        itemStyle: {
+        normal: {
+            label: {
+                show: true, //开启显示
+                position: 'top', //在上方显示
+                textStyle: { //数值样式
+                    color: 'black',
+                    fontSize: 16
+                }
+            }
+        }
+    }},
+        {type: 'bar',
+        itemStyle: {
+        normal: {
+            label: {
+                show: true, //开启显示
+                position: 'top', //在上方显示
+                textStyle: { //数值样式
+                    color: 'black',
+                    fontSize: 16
+                }
+            }
+        }
+    }}
+    ]
+};
+myChart.setOption(option);
+</script>
+{% endblock %}

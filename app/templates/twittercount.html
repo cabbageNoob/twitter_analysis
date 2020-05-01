@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}发推量{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>发推量</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">总体</li>
+        <li class="active">发推量</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 500px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 170px;margin: 0 auto;margin-top: 50px;color: #214373">
+        <p style="margin-top: 10px">观察特朗普每日发文量可以发现，自上台以来，特朗普每日发文量总体成上升趋势，他越来越喜欢在社交平台上发表自己的看法。</p>
+        <p>2019年10月9日当日共发原创推文<b  style="font-size:25px">36</b>篇，是他上台以来发原创文最多的一天。</p>
+        <p>查看推文内容可以发现，当日大多推文是就<b>共和党和民主党两党的竞争</b>话题展开的，包括州长竞选以及“告密者”事件等。</p>
+    </div>
+    </div>
+<script type="text/javascript">
+ //初始化ehcharts实例
+    var myChart=echarts.init(document.getElementById("box"));
+
+    var dates=new Array();
+    var nums=new Array();
+
+    var count=0;
+    {% for i in date %}
+        dates[count]="{{ i }}";
+        count++;
+        {% endfor %}
+
+    var count=0;
+    {% for i in num %}
+        nums[count]={{ i }};
+        count++;
+        {% endfor %}
+
+ console.log(dates)
+    //指定图表的配置项和数据
+    var option={
+        tooltip: { //跟随鼠标显示数值
+        trigger: 'axis',
+    },
+        //标题
+        title:{
+          text:'2017年1月20日至2020年4月10日特朗普每日发推量',
+          subtext:'不包含转推',
+          left: 'center'
+{#            textStyle: {#}
+{#                color: 'white',//设置主标题字体颜色#}
+{#            }#}
+        },
+        grid:{
+                    x:100,
+                    y:50,
+                    x2:50,
+                    y2:80,
+                },
+        //工具箱
+        //保存图片
+        toolbox:{
+            show:true,
+            feature:{
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {show:true},
+                saveAsImage:{
+                    backgroundColor:'#fff',
+                    show:true,
+                    excludeComponents :['toolbox'],
+                    pixelRatio: 2
+                }
+            }
+        },
+        //图例-每一条数据的名字叫销量
+        legend:{
+            data:['每日发文量'],
+            x:'left',
+            padding:[0,0,100,130],
+{#            textStyle:{#}
+{#                            color: '#fff'//字体颜色#}
+{#                        },#}
+        },
+        animation : false,
+        //x轴
+        xAxis:{
+            type: 'category',
+            boundaryGap: false,
+            data:dates,
+            axisLabel: {
+{#                textStyle: {#}
+{#                                color: '#fff'#}
+{#                            },#}
+                interval: 35,
+                rotate:40
+        }
+        },
+
+        //y轴没有显式设置，根据值自动生成y轴
+        yAxis: {
+{#            axisLabel: {#}
+{#                textStyle: {#}
+{#                    color: '#fff'#}
+{#                },#}
+{#            },#}
+        },
+        //数据-data是最终要显示的数据
+        series:[{
+            name:'当日发文量',
+            type:'line',
+            itemStyle: {
+                normal: {
+                    color:'#6495ED', //改变折线点颜色
+                    lineStyle: {
+                        width: 0.7,// 0.1的线条是非常细的了
+                        color:'#6495ED' //改变折线颜色
+                    }
+                },
+            },
+            data:nums
+        }
+        ]
+    };
+    //使用刚刚指定的配置项和数据项显示图表
+    myChart.setOption(option);
+</script>
+
+{% endblock %}

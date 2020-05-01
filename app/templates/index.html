@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+    <script src="static/js/echarts-wordcloud.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>首页</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">首页</li>
+    </ol>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="box box-primary">
+    <div class="box-body">
+        <img src="../static/images/Trump.jpg" width="165" height="165" style=" border-radius:50%;margin-left: 400px" />
+        <p style="margin-top: 20px;">
+            <b  style="font-size:25px">唐纳德·特朗普</b>（Donald Trump，1946年6月14日- ）,生于纽约，美国共和党籍政治家、企业家、商人，第45任美国总统。</p>
+        <p style="margin-bottom: 50px">特朗普于2009年3月注册推特，至今，他在推特上共拥有<b  style="font-size:25px">7400</b>万余粉丝，共发布推特近<b  style="font-size:25px">5</b>万条。</p>
+    </div>
+    <div class="box-footer">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function initPage() {
+        var jsInObj = null;
+        restTemplate("GET", "/stats/summary", jsInObj, function (jsOutObj) {
+            $("#count01").text(jsOutObj.batch_count);
+            $("#count02").text(jsOutObj.test_count);
+            $("#count03").text(jsOutObj.succ_count);
+            $("#count04").text(jsOutObj.fail_count);
+        });
+    }
+</script>
+{% endblock %}

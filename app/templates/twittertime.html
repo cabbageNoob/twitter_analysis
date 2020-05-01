@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}发推时间{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/echarts.min.js"></script>
+{#<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block navbar %}
+<section class="content-header">
+    <h1>发推时间</h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 当前位置</li>
+        <li class="active">总体</li>
+        <li class="active">发推时间</li>
+    </ol>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="box box-primary">
+<div id="box" style="width:1000px;height: 400px;margin: 0 auto;top:20px;"></div>
+<div style="width: 900px;height: 170px;margin: 0 auto;color: #214373">
+        <p style="margin-top: 10px">观察特朗普在一日内各时段发推的情况，明显地，特朗普在凌晨发文极少而更多活跃在<b  style="font-size:25px">上午</b>,且特朗普在一天开始时有强烈的发文欲望。</p>
+        <p>因为在上午的这段时间里，特朗普一般是在白宫内看福克斯新闻，且他的带有攻击意味的推文有近一半是在<b  style="font-size:25px">早上6点到10点</b>之间发出的，而此时间段内的大部分情况下，他的顾问没有在场。</p>
+    </div>
+    </div>
+<script type="text/javascript">
+    var myChart=echarts.init(document.getElementById("box"));
+    option = {
+    title: {
+        text: '特朗普发文时间段玫瑰图',
+        subtext: '美国时间',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+{#    legend: {#}
+{#        left: 'center',#}
+{#        top: 'bottom',#}
+{#        data: ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时','8时','9时','10时','11时','12时',#}
+{#        '13时','14时','15时','16时','17时','18时','19时','20时','21时','22时','23时',]#}
+{#    },#}
+    toolbox: {
+        show: true,
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {
+                show: true,
+                type: ['pie', 'funnel']
+            },
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    series: [
+        {
+            name: '面积模式',
+            type: 'pie',
+            radius: [30, 110],
+            center: ['50%', '50%'],
+            roseType: 'area',
+            data: [
+                {value: 232, name: '0时'},{value: 96, name: '1时'},{value: 41, name: '2时'},{value: 27, name: '3时'},
+                {value: 20, name: '4时'},{value: 47, name: '5时'},{value: 420, name: '6时'},{value: 867, name: '7时'},
+                {value: 1107, name: '8时'},{value: 1005, name: '9时'},{value: 765, name: '10时'},{value: 599, name: '11时'},
+                {value: 443, name: '12时'},{value: 420, name: '13时'},{value: 431, name: '14时'},{value: 519, name: '15时'},
+                {value: 548, name: '16时'},{value: 535, name: '17时'},{value: 595, name: '18时'},{value: 524, name: '19时'},
+                {value: 472, name: '20时'},{value: 444, name: '21时'},{value: 432, name: '22时'},{value: 389, name: '23时'},
+            ]
+        }
+    ]
+};
+
+    myChart.setOption(option);
+</script>
+{% endblock %}
